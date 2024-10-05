@@ -1,4 +1,4 @@
-# Projeto em C para pratica de dinâmicas em grupo
+# Projeto em C para praticar dinâmica de grupo
 
 Um repositório para um projeto de estudo que tem como objetivo aprimorar nossas capacidades de trabalhar em grupo e compartilhar conhecimentos.
 
