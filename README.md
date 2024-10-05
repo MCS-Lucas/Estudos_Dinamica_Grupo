@@ -1,6 +1,6 @@
 # Projeto em C para praticar dinâmica de grupo
 
-Um repositório para um projeto de estudo que tem como objetivo aprimorar nossas capacidades de trabalhar em grupo e compartilhar conhecimentos.
+- Um repositório para um projeto de estudo que tem como objetivo aprimorar nossas capacidades de trabalhar em grupo e compartilhar conhecimentos.
 
 ## O projeto se baseia em programação estruturada e estrutura de dados em C, onde cada integrante irá criar as funções:
 - BubbleSort
