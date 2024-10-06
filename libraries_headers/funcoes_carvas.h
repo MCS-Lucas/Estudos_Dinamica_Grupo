@@ -125,4 +125,50 @@ void pilha_exe() {
     }while(opPilha != 0);
 }
 
+void menuCarvas() {
+
+    int opCarvas;
+
+    do{
+
+        printf("======= MENU CARVAS =======\n");
+        printf("1. Menu Pilha\n");
+        printf("2. Menu Fila\n");
+        printf("3. Menu Lista\n");
+        wprintf(L"4. Métodos de Ordenação");
+        wprintf(L"5. Métodos de Busca\n");
+        printf("0. Sair\n");
+        printf("==========================\n");
+        wprintf(L"Qual menu de funções deseja escolher: ");
+        scanf("%d",&opCarvas);
+
+        switch(opCarvas){
+
+            case 1:
+                pilha_exe();
+            break;
+
+
+            case 2:
+
+                break;
+
+            case 3:
+
+                break;
+
+            case 4:
+
+                break;
+
+            default:
+
+                if(opCarvas == 0) {
+                    printf("Encerrando Programa...");
+                    break;
+                }
+            wprintf(L"Opção inválida");
+        }
+    }while(opCarvas != 0);
+}
 #endif
