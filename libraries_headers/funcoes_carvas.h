@@ -69,15 +69,12 @@ void imprimir_pilha(No *topo) {
         imprimirPessoa(topo->pessoa);  //imprime de cima para baixo começando no topo da pilha
         printf("\n-------------------------------------------\n");
         topo = topo->proximo;  //apos imprimir o topo da pilha, o ponteiro topo vai receber o endereço do ponteiro topo o onde o ponteiro do tipo No é referenciado, buscando seu conteudo que por consequencia aponta para outro nó e assim segue até que o ponteiro "proximo" aponte para NULL
-        if(topo->proximo) {
-            printf("\n--------------------------------------------\n");
-        }
+
     }
 
 }
 
 void pilha_exe() {
-
     int opPilha;
     No *remover, *topo = NULL;
 
@@ -95,11 +92,12 @@ void pilha_exe() {
 
             case 1:
                 topo = empilhar_push(topo);
-                printf("\nEmpilhando...\n\n");
+            printf("\nEmpilhando...\n\n");
                 break;
 
             case 2:
                 remover = desempilhar_pop(&topo);
+
                 if(remover) {
                     printf("\nO cadastro: \n");
                     printf("--------------------\n");
@@ -116,10 +114,6 @@ void pilha_exe() {
                 imprimir_pilha(topo);
                 break;
 
-            case 4:
-
-                break;
-
             default:
 
                 if(opPilha == 0) {
@@ -129,7 +123,6 @@ void pilha_exe() {
             wprintf(L"Opção inválida");
         }
     }while(opPilha != 0);
-
 }
 
 #endif

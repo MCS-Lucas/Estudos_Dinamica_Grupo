@@ -12,11 +12,6 @@ int main(){
 
     setlocale(LC_ALL, "Portuguese");
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 086b4d4e7bd40cf213b96103eb97df3a5a3d961a
     int op;
 
     do{
@@ -34,12 +29,9 @@ int main(){
         switch(op){
 
             case 1:
-<<<<<<< HEAD
                 pilha_exe();
-=======
-
                 break;
->>>>>>> 086b4d4e7bd40cf213b96103eb97df3a5a3d961a
+
 
             case 2:
 

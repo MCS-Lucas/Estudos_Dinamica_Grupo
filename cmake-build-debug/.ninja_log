@@ -1,40 +1,13 @@
 # ninja log v6
-<<<<<<< HEAD
 3	72	7498616766751330	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
 73	152	7498616767461076	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-19	175	7498624893277644	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-176	280	7498624894839144	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-3	78	7498661538667775	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-79	168	7498661539413685	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-12	99	7498668616139107	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-100	193	7498668617011863	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-18	87	7498668873961658	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-87	171	7498668874649177	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-3	81	7498678859576923	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-81	175	7498678860353134	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-16	85	7498679213772420	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-86	179	7498679214471856	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-4	72	7498679935969310	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-72	152	7498679936652116	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-3	77	7498681230291727	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-78	179	7498681231044372	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-21	110	7498695412543112	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-112	274	7498695413454491	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-51	198	7498700612327304	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-199	565	7498700613806697	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-4	94	7498709725375041	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-95	189	7498709726288623	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-4	102	7498711932978257	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-103	203	7498711933956518	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-4	95	7498713912715643	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-97	197	7498713913649351	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-4	88	7498714376835492	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-89	163	7498714377689796	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-3	88	7498715227757704	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-89	189	7498715228610555	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-=======
-2	68	7498612993527529	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-70	211	7498612994202436	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
-3	72	7498616766751330	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-73	152	7498616767461076	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
->>>>>>> 086b4d4e7bd40cf213b96103eb97df3a5a3d961a
+3	83	7498779068686804	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
+84	379	7498779069493991	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
+3	78	7498779963400328	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
+79	156	7498779964157472	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
+4	80	7498781119966052	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
+81	158	7498781120732780	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
+3	85	7498782627517332	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
+85	159	7498782628340818	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
+4	79	7498782878588078	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
+80	158	7498782879352655	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
