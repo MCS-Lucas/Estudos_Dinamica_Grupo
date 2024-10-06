@@ -29,9 +29,8 @@ int main(){
         switch(op){
 
             case 1:
-                pilha_exe();
+                menuCarvas();
                 break;
-
 
             case 2:
 
