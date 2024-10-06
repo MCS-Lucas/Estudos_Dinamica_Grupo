@@ -1,4 +1,5 @@
 # ninja log v6
+<<<<<<< HEAD
 3	72	7498616766751330	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
 73	152	7498616767461076	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
 19	175	7498624893277644	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
@@ -31,3 +32,9 @@
 89	163	7498714377689796	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
 3	88	7498715227757704	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
 89	189	7498715228610555	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
+=======
+2	68	7498612993527529	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
+70	211	7498612994202436	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
+3	72	7498616766751330	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
+73	152	7498616767461076	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
+>>>>>>> 086b4d4e7bd40cf213b96103eb97df3a5a3d961a
