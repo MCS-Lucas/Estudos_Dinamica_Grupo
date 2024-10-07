@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/legol/OneDrive/Desktop/Faculdade/ACADEMY APPLE/PROGRAMAÇÃO C/Estudos_Dinamica_Grupo
+# Install script for directory: C:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Estudos_Dinamica_Grupo_1_")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Estudos_Dinamica_Grupo")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,7 +34,7 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Program Files/JetBrains/CLion 2024.1.5/bin/mingw/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "C:/MinGW/bin/objdump.exe")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/legol/OneDrive/Desktop/Faculdade/ACADEMY APPLE/PROGRAMAÇÃO C/Estudos_Dinamica_Grupo/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

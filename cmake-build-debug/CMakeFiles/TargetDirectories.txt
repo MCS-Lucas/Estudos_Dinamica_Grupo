@@ -1,3 +1,3 @@
-C:/Users/legol/OneDrive/Desktop/Faculdade/ACADEMY APPLE/PROGRAMAÇÃO C/Estudos_Dinamica_Grupo/cmake-build-debug/CMakeFiles/Estudos_Dinamica_Grupo.dir
-C:/Users/legol/OneDrive/Desktop/Faculdade/ACADEMY APPLE/PROGRAMAÇÃO C/Estudos_Dinamica_Grupo/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/legol/OneDrive/Desktop/Faculdade/ACADEMY APPLE/PROGRAMAÇÃO C/Estudos_Dinamica_Grupo/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo/cmake-build-debug/CMakeFiles/Estudos_Dinamica_Grupo.dir
+C:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo/cmake-build-debug/CMakeFiles/rebuild_cache.dir

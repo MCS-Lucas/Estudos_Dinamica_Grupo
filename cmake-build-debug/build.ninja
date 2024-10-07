@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:/Users/legol/OneDrive/Desktop/Faculdade/ACADEMY$ APPLE/PROGRAMAÇÃO$ C/Estudos_Dinamica_Grupo/cmake-build-debug/
+cmake_ninja_workdir = C$:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target Estudos_Dinamica_Grupo
 
@@ -49,12 +49,19 @@ cmake_ninja_workdir = C$:/Users/legol/OneDrive/Desktop/Faculdade/ACADEMY$ APPLE/
 
 build cmake_object_order_depends_target_Estudos_Dinamica_Grupo: phony || CMakeFiles/Estudos_Dinamica_Grupo.dir
 
-build CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj: C_COMPILER__Estudos_Dinamica_Grupo_unscanned_Debug C$:/Users/legol/OneDrive/Desktop/Faculdade/ACADEMY$ APPLE/PROGRAMAÇÃO$ C/Estudos_Dinamica_Grupo/src/main.c || cmake_object_order_depends_target_Estudos_Dinamica_Grupo
+build CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj: C_COMPILER__Estudos_Dinamica_Grupo_unscanned_Debug C$:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo/src/main.c || cmake_object_order_depends_target_Estudos_Dinamica_Grupo
   DEP_FILE = CMakeFiles\Estudos_Dinamica_Grupo.dir\src\main.c.obj.d
-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -I"C:/Users/legol/OneDrive/Desktop/Faculdade/ACADEMY APPLE/PROGRAMAÇÃO C/Estudos_Dinamica_Grupo/libraries_headers"
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo/libraries_headers
   OBJECT_DIR = CMakeFiles\Estudos_Dinamica_Grupo.dir
   OBJECT_FILE_DIR = CMakeFiles\Estudos_Dinamica_Grupo.dir\src
+
+build CMakeFiles/Estudos_Dinamica_Grupo.dir/main.c.obj: C_COMPILER__Estudos_Dinamica_Grupo_unscanned_Debug C$:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo/main.c || cmake_object_order_depends_target_Estudos_Dinamica_Grupo
+  DEP_FILE = CMakeFiles\Estudos_Dinamica_Grupo.dir\main.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo/libraries_headers
+  OBJECT_DIR = CMakeFiles\Estudos_Dinamica_Grupo.dir
+  OBJECT_FILE_DIR = CMakeFiles\Estudos_Dinamica_Grupo.dir
 
 
 # =============================================================================
@@ -64,7 +71,7 @@ build CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj: C_COMPILER__Estudos_
 #############################################
 # Link the executable Estudos_Dinamica_Grupo.exe
 
-build Estudos_Dinamica_Grupo.exe: C_EXECUTABLE_LINKER__Estudos_Dinamica_Grupo_Debug CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj
+build Estudos_Dinamica_Grupo.exe: C_EXECUTABLE_LINKER__Estudos_Dinamica_Grupo_Debug CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj CMakeFiles/Estudos_Dinamica_Grupo.dir/main.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Estudos_Dinamica_Grupo.dir
@@ -79,7 +86,7 @@ build Estudos_Dinamica_Grupo.exe: C_EXECUTABLE_LINKER__Estudos_Dinamica_Grupo_De
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\legol\OneDrive\Desktop\Faculdade\ACADEMY APPLE\PROGRAMAÇÃO C\Estudos_Dinamica_Grupo\cmake-build-debug" && "C:\Program Files\JetBrains\CLion 2024.1.5\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\guilh\CLionProjects\Estudos_Dinamica_Grupo\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.1.5\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -90,7 +97,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\legol\OneDrive\Desktop\Faculdade\ACADEMY APPLE\PROGRAMAÇÃO C\Estudos_Dinamica_Grupo\cmake-build-debug" && "C:\Program Files\JetBrains\CLion 2024.1.5\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S"C:\Users\legol\OneDrive\Desktop\Faculdade\ACADEMY APPLE\PROGRAMAÇÃO C\Estudos_Dinamica_Grupo" -B"C:\Users\legol\OneDrive\Desktop\Faculdade\ACADEMY APPLE\PROGRAMAÇÃO C\Estudos_Dinamica_Grupo\cmake-build-debug""
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\guilh\CLionProjects\Estudos_Dinamica_Grupo\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.1.5\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\guilh\CLionProjects\Estudos_Dinamica_Grupo -BC:\Users\guilh\CLionProjects\Estudos_Dinamica_Grupo\cmake-build-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -108,7 +115,7 @@ build Estudos_Dinamica_Grupo: phony Estudos_Dinamica_Grupo.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/legol/OneDrive/Desktop/Faculdade/ACADEMY APPLE/PROGRAMAÇÃO C/Estudos_Dinamica_Grupo/cmake-build-debug
+# Folder: C:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo/cmake-build-debug
 
 build all: phony Estudos_Dinamica_Grupo.exe
 
@@ -119,14 +126,14 @@ build all: phony Estudos_Dinamica_Grupo.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake C$:/Users/legol/OneDrive/Desktop/Faculdade/ACADEMY$ APPLE/PROGRAMAÇÃO$ C/Estudos_Dinamica_Grupo/CMakeLists.txt CMakeCache.txt CMakeFiles/3.28.6/CMakeCCompiler.cmake CMakeFiles/3.28.6/CMakeRCCompiler.cmake CMakeFiles/3.28.6/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake C$:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo/CMakeLists.txt CMakeCache.txt CMakeFiles/3.28.6/CMakeCCompiler.cmake CMakeFiles/3.28.6/CMakeRCCompiler.cmake CMakeFiles/3.28.6/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake C$:/Users/legol/OneDrive/Desktop/Faculdade/ACADEMY$ APPLE/PROGRAMAÇÃO$ C/Estudos_Dinamica_Grupo/CMakeLists.txt CMakeCache.txt CMakeFiles/3.28.6/CMakeCCompiler.cmake CMakeFiles/3.28.6/CMakeRCCompiler.cmake CMakeFiles/3.28.6/CMakeSystem.cmake: phony
+build C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.5/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake C$:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo/CMakeLists.txt CMakeCache.txt CMakeFiles/3.28.6/CMakeCCompiler.cmake CMakeFiles/3.28.6/CMakeRCCompiler.cmake CMakeFiles/3.28.6/CMakeSystem.cmake: phony
 
 
 #############################################
