@@ -4,11 +4,36 @@
 
 #include "elementos.h"
 
+void limparTela() {
+#ifdef __linux__
+    system("clear");
+#elif _WIN32
+    system("cls");
+#else
+
+#endif
+}
+
+
+void menuFuncoes() {
+    limparTela();
+    wprintf(L"\n\t------ FUNÇÕES ------");
+    wprintf(L"\n\tMétodos de ordenação:");
+    printf("\n\tBubble-Sort -------- 1");
+    printf("\n\tQuick-Sort --------- 2");
+    printf("\n\tMerge-Sort --------- 3");
+    printf("\n\tInsertion-Sort ----- 2");
+    printf("\n\tInsertion-Sort ----- 2");
+
+}
+
+
+
+
 void bubbleSort() {
     int numeros[10];
     int i, aux, contador, input;
     int *p;
-
 
     printf("Entre com dez números para preencher o array, e pressione enter após digitar cada um:\n");
     for (i = 0; i <= 9; i++) {
@@ -31,12 +56,12 @@ void bubbleSort() {
             }
         }
     }
-
     printf("\nElementos do array em ordem crescente:\n");
     for(i = 0; i < 10; i++) {
         printf("%d ", numeros[i]);
     }
-
 }
+
+
 
 #endif

@@ -8,6 +8,7 @@
 #include "funcoes_judas.h"
 
 void bubbleSort();
+void menuFuncoes();
 
 
 
@@ -40,7 +41,7 @@ int main(){
                 break;
 
             case 3:
-                bubbleSort();
+                menuFuncoes();
 
                 return 0;
                 break;
