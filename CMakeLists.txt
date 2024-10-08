@@ -6,4 +6,4 @@ set(CMAKE_C_STANDARD 11)
 include_directories(libraries_headers)
 
 add_executable(Estudos_Dinamica_Grupo src/main.c
-        main.c)
+)
