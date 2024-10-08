@@ -2,8 +2,7 @@
 #ifndef FUNCOES_JUDAS_H
 #define FUNCOES_JUDAS_H
 #endif
-
-#include "elementos.h"
+#define TAM 10
 #ifdef _WIN32
 #include <windows.h>
 #else
@@ -29,26 +28,34 @@ void pausarExecucao(int segundos) {
     #endif
 }
 
+void swap(int vetor[TAM], int numA, int numB) {
+    int aux = vetor[numA];
+    vetor[numA] = vetor[numB];
+    vetor[numB] = aux;
+}
 
-void bubbleSort() {
-    int numeros[10];
+inline void bubbleSort() {
+    int numeros[TAM];
     int i, aux, contador, input;
     int *p;
 
-    printf("Entre com dez números para preencher o array, e pressione enter após digitar cada um:\n");
-    for (i = 0; i <= 9; i++) {
-        printf("%d/10: ", i);
+    wprintf(L"\n\tEntre com dez números para preencher o array, e pressione enter após digitar cada um:\n");
+    for (i = 0; i <= TAM-1; i++) {
         scanf("%d", &input);
         *(numeros + i) = input; // "Insere o valor ao endereço de números + i
     }
 
-    printf("Ordem atual dos itens no array:\n");
-    for ( p = numeros; p <= &numeros[9]; p++ ) {printf("%d ", *p);} // Valor desreferenciado do ponteiro p -> numeros é impresso na tela
+    printf("\n\tOrdem atual dos itens no array:\n");
+
+    for ( p = numeros; p <= &numeros[9]; p++ ) {
+        if(p == numeros){printf("\t");} // Corrigir a margem do primeiro elemento
+        printf("%d ", *p);
+    } // Valor desreferenciado do ponteiro p -> numeros é impresso na tela
     // O propósito desse metodo de impressão é evidenciar como é acessado o endereço de memória de um array
 
     // Algoritimo de ordenação Bubblesort:
-    for (contador = 0; contador < 10-1; contador++) { // "10-1" Se justifica pois contador[10] não tem comparativo
-        for (i = 0; i < 10; i++) {
+    for (contador = 0; contador < TAM-1; contador++) { // "10-1" Se justifica pois contador[10] não tem comparativo
+        for (i = 0; i < TAM; i++) {
             if(numeros[i] > numeros[i+1]) { // Condição e swap
                 aux = numeros[i];
                 numeros[i] = numeros[i+1];
@@ -56,25 +63,45 @@ void bubbleSort() {
             }
         }
     }
-    printf("\nElementos do array em ordem crescente:\n");
-    for(i = 0; i < 10; i++) {
+    printf("\n\tElementos do array em ordem crescente:\n");
+    for(i = 0; i < TAM; i++) {
+        if(i == 0) {printf("\t");}
         printf("%d ", numeros[i]);
     }
 }
 
-void quickSort() {
-    int numeros[10];
-    int i, pivot;
 
-    printf("Entre com dez números para preencher o array, e pressione enter após digitar cada um:\n");
-    for (i = 0; i <= 9; i++) {
-        printf("%d/10: ", i);
+inline void quickSort() {
+    int numeros[TAM];
+    int i;
+    int pivot; // Elemento usado como comparador no laço de repetição [ x < pivot > y ]
+
+    wprintf(L"\n\tEntre com dez números para preencher o array, e pressione enter após digitar cada um:\n");
+    for (i = 0; i <= TAM-1; i++) {
         scanf("%d", &numeros[i]);
+        getchar();
     }
+
+    printf("\n\tOrdem atual dos itens no array:\n");
+    for( i = 0; i < TAM; i++) {
+        if( i == 0 ) {printf("\t");} // Correção da margem do primeiro elemento
+        printf("%d ", numeros[i]);
+    }
+
+    printf("\n\tPrimeiro elemento     : %d", numeros[0]);
+    printf("\n\tElemento central      : %d", numeros[TAM/2]);
+    wprintf(L"\n\tÚltimo elemento       : %d", numeros[TAM-1]);
+
+
+    // Algorítimo de ordenação QuickSort:
+
+
+
+
 }
 
 
-void menuFuncoes() {
+inline void menuFuncoes() {
     int opc;
     do {
         limparTela();

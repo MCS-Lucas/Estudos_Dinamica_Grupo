@@ -10,7 +10,8 @@
 void bubbleSort();
 void quickSort();
 void menuFuncoes();
-
+inline void limparTela();
+inline void pausarExecucao(int segundos);
 
 
 int main(){
