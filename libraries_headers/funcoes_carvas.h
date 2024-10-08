@@ -5,6 +5,7 @@
 #include "elementos.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct no {  //Criação da estrutura nó para implementar nas estruturas pilha, fila, lista encadeada e duplamente encadeada
     Pessoa pessoa;
@@ -17,22 +18,24 @@ Pessoa cadastrarPessoa() {   //Função para cadastrar
 
     printf("Cadastrando Programador\n\n");
     printf(" Insira o nome: ");
-    scanf("%s",&p.Nome);
+    getchar();
+    fgets(p.Nome, 49, stdin);
     printf("Insira a idade: ");
     scanf("%d",&p.Idade);
+    getchar();
     wprintf(L"Insira o nome de usuário do Github: ");
-    scanf("%s",&p.Github);
+    fgets(p.Github, 29, stdin);
     printf("Insira o email para contato: ");
-    scanf("%s",&p.Email);
+    fgets(p.Email, 49, stdin);
 
     return p;
 }
 void imprimirPessoa(Pessoa pessoa) {
 
     printf("Nome: %s",pessoa.Nome);
-    printf("\nidade: %d",pessoa.Idade);
+    printf("idade: %d",pessoa.Idade);
     wprintf(L"\nNome de Usuário: %s",pessoa.Github);
-    printf("\nEmail: %s",pessoa.Email);
+    printf("Email: %s",pessoa.Email);
 
 }
 
@@ -67,7 +70,7 @@ void imprimir_pilha(No *topo) {
     printf("\n-------------Inseridos na Pilha-----------\n");
     while(topo) { // serve funciona verificando se o ponteiro topo ainda está apontando para algum endereço, se não houver nenhum endereço sendo apontado então topo == NULL e a condição de parada do While é atendida
         imprimirPessoa(topo->pessoa);  //imprime de cima para baixo começando no topo da pilha
-        printf("\n-------------------------------------------\n");
+        printf("-------------------------------------------\n");
         topo = topo->proximo;  //apos imprimir o topo da pilha, o ponteiro topo vai receber o endereço do ponteiro topo o onde o ponteiro do tipo No é referenciado, buscando seu conteudo que por consequencia é outro endereço que aponta para outro nó e assim segue até que o ponteiro "proximo" aponte para NULL
 
     }
@@ -164,7 +167,7 @@ void imprimir_fila(No *fila) {
     printf("\n-------------Inseridos na Pilha-----------\n");
     while(fila) { // serve funciona verificando se o ponteiro fila ainda está apontando para algum endereço, se não houver nenhum endereço sendo apontado então fila == NULL e a condição de parada do While é atendida
         imprimirPessoa(fila->pessoa);  //imprime de cima para baixo começando no topo da pilha
-        printf("\n-------------------------------------------\n");
+        printf("-------------------------------------------\n");
         fila = fila->proximo;  //apos imprimir o primeiro elemento da fila, o ponteiro fila vai receber o endereço do ponteiro fila o onde o ponteiro do tipo No é referenciado, buscando seu conteudo que por consequencia é outro endereço que aponta para outro nó e assim segue até que o ponteiro "proximo" aponte para NULL
 
     }
@@ -201,16 +204,16 @@ void fila_exe(){
                 printf("--------------------\n");
                 imprimirPessoa(remover->pessoa);
                 printf("\n--------------------\n");
-                printf("Foi removido da pilha com sucesso!\n\n1");
+                printf("Foi removido da fila com sucesso!\n\n1");
                 free(remover);
             }else {
-                printf("pilha vazia");
+                printf("fila vazia");
             }
-            break;
+                break;
 
             case 3:
-                imprimir_pilha(fila);
-            break;
+                imprimir_fila(fila);
+                break;
 
             default:
 
@@ -224,6 +227,164 @@ void fila_exe(){
 }
 
 //Funções para estrutura Lista Encadeada e Duplamente Encadeada
+
+void inserir_lista_inicio(No **lista) {
+    No *aux, *novo = malloc(sizeof(No));
+
+    if(novo) {
+
+        novo->pessoa = cadastrarPessoa();
+
+        if(*lista == NULL) {
+            novo->proximo = NULL;
+            *lista = novo;
+        }else {
+            aux = *lista;
+            novo->proximo = aux;
+        }
+        *lista = novo;
+    }else {
+        wprintf(L"\nErro ao alocar memória");
+    }
+}
+
+void inserir_lista_idade(No **lista) {
+    No *aux,*auxAnt = NULL, *novo = malloc(sizeof(No));
+
+    if (novo) {
+        novo->pessoa = cadastrarPessoa();
+
+        if(*lista == NULL) {
+            novo->proximo = NULL;
+            *lista = novo;
+        }else {
+            aux = *lista;
+            while(aux->proximo && novo->pessoa.Idade > aux->pessoa.Idade) {
+                auxAnt = aux;
+                aux = aux->proximo;
+            }
+            if(auxAnt == NULL) {
+                novo->proximo = *lista;
+                *lista = novo;
+            }else {
+                novo->proximo = aux;
+                auxAnt->proximo = novo;
+            }
+        }
+    }else {
+        wprintf(L"Erro ao alocar memória");
+    }
+}
+
+void inserir_lista_nome(No **lista) {
+
+    No *aux, *auxAnt = NULL,*novo = malloc(sizeof(No));
+    int i, ordem;
+
+    if(novo) {
+        novo->pessoa = cadastrarPessoa();
+        if(*lista == NULL) {
+            novo->proximo = NULL;
+            *lista = novo;
+        }else {
+            aux = *lista;
+            while(aux->proximo && _stricmp(novo->pessoa.Nome,aux->pessoa.Nome) > 0){
+                auxAnt = aux;
+                aux = aux->proximo;
+            }
+            if(auxAnt != NULL) {
+                novo->proximo = aux;
+                auxAnt->proximo = novo;
+            }else {
+                novo->proximo = *lista;
+                *lista = novo;
+            }
+        }
+    }else {
+        wprintf(L"Erro ao alocar memória");
+    }
+}
+
+void imprimir_lista(No *lista) {
+
+    printf("\n-------------Inseridos na Lista-----------\n");
+    while(lista) {
+        imprimirPessoa(lista->pessoa);
+        printf("-------------------------------------------\n");
+        lista = lista->proximo;
+    }
+
+}
+
+void lista_exe() {
+
+    No *remover,*lista = NULL;
+    int opLista;
+
+    do {
+        printf("===== MENU PILHA =====\n");
+        printf("1. Inserir na lista\n");
+        printf("2. Inserir na lista (ordenado por idade)\n");
+        printf("3. Inserir na lista (ordenado por nome)\n");
+        printf("4. Remover da lista\n");
+        printf("5. Imprimir lista \n");
+        printf("6. Buscar na lista\n");
+        printf("0. Sair\n");
+        printf("==========================\n");
+        wprintf(L"Qual função deseja escolher: ");
+        scanf("%d",&opLista);
+
+        switch(opLista){
+
+            case 1:
+                inserir_lista_inicio(&lista);
+                printf("\nEnfileirando...\n\n");
+                break;
+
+            case 2:
+                inserir_lista_idade(&lista);
+                printf("\nEnfileirando...\n\n");
+                break;
+
+            case 3:
+                inserir_lista_nome(&lista);
+                printf("\nEnfileirando...\n\n");
+                break;
+
+            case 4:
+
+                if(remover) {
+                    printf("\nO cadastro: \n");
+                    printf("--------------------\n");
+                    imprimirPessoa(remover->pessoa);
+                    printf("\n--------------------\n");
+                    printf("Foi removido da fila com sucesso!\n\n1");
+                    free(remover);
+                }else {
+                    printf("Lista vazia");
+                }
+                break;
+
+            case 5:
+
+                imprimir_lista(lista);
+                break;
+
+            case 6:
+
+                break;
+
+            default:
+
+                if(opLista == 0) {
+                    printf("Encerrando Programa...");
+                    break;
+                }
+            wprintf(L"Opção inválida");
+        }
+    }while(opLista != 0);
+}
+
 
 void menuCarvas() {
 
@@ -254,7 +415,7 @@ void menuCarvas() {
                 break;
 
             case 3:
-
+                lista_exe();
                 break;
 
             case 4:
