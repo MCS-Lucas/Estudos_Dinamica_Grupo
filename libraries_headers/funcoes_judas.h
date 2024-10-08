@@ -3,6 +3,7 @@
 #define FUNCOES_JUDAS_H
 
 #include "elementos.h"
+#include <locale.h>
 
 void limparTela() {
 #ifdef __linux__
@@ -16,16 +17,36 @@ void limparTela() {
 
 
 void menuFuncoes() {
-    limparTela();
-    wprintf(L"\n\t------ FUNÇÕES ------");
-    wprintf(L"\n\tMétodos de ordenação:");
-    printf("\n\tBubble-Sort -------- 1");
-    printf("\n\tQuick-Sort --------- 2");
-    printf("\n\tMerge-Sort --------- 3");
-    printf("\n\tInsertion-Sort ----- 2");
-    printf("\n\tInsertion-Sort ----- 2");
+    int opc;
+    do {
+        limparTela();
+        wprintf(L"\n\t----------- FUNÇÕES -----------");
+        wprintf(L"\n\tMétodos de ordenação:");
+        printf("\n\tBubble-Sort ------------------- 1");
+        printf("\n\tQuick-Sort -------------------- 2");
+        printf("\n\tMerge-Sort -------------------- 3");
+        printf("\n\tInsertion-Sort ---------------- 4");
+        printf("\n\tInsertion-Sort ---------------- 5");
+        wprintf(L"\n\tMétodos de busca:");
+        printf("\n\tÁrvore-de-busca-binária ------- 6");
+        printf("\n\tBusca-sequencial -------------- 7");
+        printf("\n\tBusca-binária-recursiva ------- 8");
+        printf("\n\tBusca-sequencial -------------- 9");
+        wprintf(L"\n\tMétodos de alocação dinâmica:");
+        printf("\n\tPilha ------------------------ 10");
+        printf("\n\tFila ------------------------- 11");
+        printf("\n\tLista-encadeada -------------- 12");
+        printf("\n\tLista-duplamente-encadeada --- 13");
+        printf("\n\tSair -------------------------- 0");
+        wprintf(L"\n\n\tEscolha:");
+        scanf("\n\t%d", &opc);
+    } while (opc != 0);
+
 
 }
+
+
+
 
 
 
