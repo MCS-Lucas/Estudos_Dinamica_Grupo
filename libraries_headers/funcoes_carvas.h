@@ -179,7 +179,7 @@ void fila_exe(){
     No *remover, *fila = NULL;
 
     do {
-        printf("===== MENU PILHA =====\n");
+        printf("===== MENU FILA =====\n");
         printf("1. Enfileirar\n");
         printf("2. Desenfileirar\n");
         printf("3. Imprimir Fila\n");
@@ -305,6 +305,38 @@ void inserir_lista_nome(No **lista) {
     }
 }
 
+No* remover_da_lista(No **lista) {
+
+    No *aux, *auxAnt = NULL, *remover = NULL;
+    char github[30];
+
+    wprintf(L"Removendo Usuário\n");
+    wprintf(L" Insira o nome de usuário do GitHub: ");
+    getchar();
+    fgets(github, 29, stdin);
+
+    if(*lista) {
+        aux = *lista;
+        while(aux->proximo && _stricmp(github,aux->pessoa.Github) != 0) {
+            auxAnt = aux;
+            aux = aux->proximo;
+        }
+        if(aux == NULL){
+            wprintf("\nUsuário não encontrado.\n");
+        }else {
+            remover = aux;
+            if(auxAnt == NULL) {
+                *lista = remover->proximo;
+            }else {
+                auxAnt->proximo = remover->proximo;
+            }
+        }
+    }else {
+        printf("Lista vazia.\n");
+    }
+    return remover;
+}
+
 void imprimir_lista(No *lista) {
 
     printf("\n-------------Inseridos na Lista-----------\n");
@@ -322,7 +354,7 @@ void lista_exe() {
     int opLista;
 
     do {
-        printf("===== MENU PILHA =====\n");
+        printf("===== MENU LISTA =====\n");
         printf("1. Inserir na lista\n");
         printf("2. Inserir na lista (ordenado por idade)\n");
         printf("3. Inserir na lista (ordenado por nome)\n");
@@ -352,13 +384,13 @@ void lista_exe() {
                 break;
 
             case 4:
-
+                remover = remover_da_lista(&lista);
                 if(remover) {
                     printf("\nO cadastro: \n");
                     printf("--------------------\n");
                     imprimirPessoa(remover->pessoa);
                     printf("\n--------------------\n");
-                    printf("Foi removido da fila com sucesso!\n\n1");
+                    printf("Foi removido da lista com sucesso!\n\n1");
                     free(remover);
                 }else {
                     printf("Lista vazia");
