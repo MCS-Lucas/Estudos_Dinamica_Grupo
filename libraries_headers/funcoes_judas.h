@@ -16,38 +16,6 @@ void limparTela() {
 }
 
 
-void menuFuncoes() {
-    int opc;
-    do {
-        limparTela();
-        wprintf(L"\n\t----------- FUNÇÕES -----------");
-        wprintf(L"\n\tMétodos de ordenação:");
-        printf("\n\tBubble-Sort ------------------- 1");
-        printf("\n\tQuick-Sort -------------------- 2");
-        printf("\n\tMerge-Sort -------------------- 3");
-        printf("\n\tInsertion-Sort ---------------- 4");
-        printf("\n\tInsertion-Sort ---------------- 5");
-        wprintf(L"\n\tMétodos de busca:");
-        printf("\n\tÁrvore-de-busca-binária ------- 6");
-        printf("\n\tBusca-sequencial -------------- 7");
-        printf("\n\tBusca-binária-recursiva ------- 8");
-        printf("\n\tBusca-sequencial -------------- 9");
-        wprintf(L"\n\tMétodos de alocação dinâmica:");
-        printf("\n\tPilha ------------------------ 10");
-        printf("\n\tFila ------------------------- 11");
-        printf("\n\tLista-encadeada -------------- 12");
-        printf("\n\tLista-duplamente-encadeada --- 13");
-        printf("\n\tSair -------------------------- 0");
-        wprintf(L"\n\n\tEscolha:");
-        scanf("\n\t%d", &opc);
-    } while (opc != 0);
-
-
-}
-
-
-
-
 
 
 
@@ -83,6 +51,82 @@ void bubbleSort() {
     }
 }
 
+void subMenuFuncoes(int opc) {
+    switch (opc) {
+        case 1:
+            bubbleSort();
+        break;
+        case 2:
+            printf("quickSort()");
+        break;
+        case 3:
+            printf("mergeSort()");
+        break;
+        case 4:
+            printf("quickSort()");
+        break;
+        case 5:
+            printf("quickSort()");
+        break;
+        case 6:
+            printf("quickSort()");
+        break;
+        case 7:
+            printf("quickSort()");
+        break;
+        case 8:
+            printf("quickSort()");
+        break;
+        case 9:
+            printf("quickSort()");
+        break;
+        case 10:
+            printf("quickSort()");
+        break;
+        case 11:
+            printf("quickSort()");
+        break;
+        case 12:
+            printf("quickSort()");
+        break;
+        case 13:
+            printf("quickSort()");
+        break;
+        default:
+            wprintf(L"\n\tOpção inválida.");
+    }
+
+}
+
+
+void menuFuncoes() {
+    int opc;
+    do {
+        limparTela();
+        wprintf(L"\n\t----------- FUNÇÕES -----------");
+        wprintf(L"\n\tMétodos de ordenação:");
+        printf("\n\tBubble-Sort ------------------- 1");
+        printf("\n\tQuick-Sort -------------------- 2");
+        printf("\n\tMerge-Sort -------------------- 3");
+        printf("\n\tInsertion-Sort ---------------- 4");
+        printf("\n\tInsertion-Sort ---------------- 5");
+        wprintf(L"\n\tMétodos de busca:");
+        printf("\n\tÁrvore-de-busca-binária ------- 6");
+        printf("\n\tBusca-sequencial -------------- 7");
+        printf("\n\tBusca-binária-recursiva ------- 8");
+        printf("\n\tBusca-sequencial -------------- 9");
+        wprintf(L"\n\tMétodos de alocação dinâmica:");
+        printf("\n\tPilha ------------------------ 10");
+        printf("\n\tFila ------------------------- 11");
+        printf("\n\tLista-encadeada -------------- 12");
+        printf("\n\tLista-duplamente-encadeada --- 13");
+        printf("\n\tSair -------------------------- 0");
+        wprintf(L"\n\n\tEscolha:");
+        scanf("\n\t%d", &opc);
+    } while (opc != 0);
+
+    subMenuFuncoes(opc);
+}
 
 
 #endif
