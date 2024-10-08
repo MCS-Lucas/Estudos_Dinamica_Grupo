@@ -1,22 +1,33 @@
 //Aqui serão declaradas as funções feitas pelo Guilherme Yago
 #ifndef FUNCOES_JUDAS_H
 #define FUNCOES_JUDAS_H
+#endif
 
 #include "elementos.h"
-#include <locale.h>
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
+
 
 void limparTela() {
-#ifdef __linux__
-    system("clear");
-#elif _WIN32
-    system("cls");
-#else
+    #ifdef __linux__
+        system("clear");
+    #elif _WIN32
+        system("cls");
+    #else
 
-#endif
+    #endif
 }
 
-
-
+void pausarExecucao(int segundos) {
+    #ifdef _WIN32 // Caso WIN
+        Sleep(segundos * 1000); // Função converte milisegundos -> segundos
+    #else // Caso genérico
+        sleep(seconds)
+    #endif
+}
 
 
 void bubbleSort() {
@@ -51,51 +62,15 @@ void bubbleSort() {
     }
 }
 
-void subMenuFuncoes(int opc) {
-    switch (opc) {
-        case 1:
-            bubbleSort();
-        break;
-        case 2:
-            printf("quickSort()");
-        break;
-        case 3:
-            printf("mergeSort()");
-        break;
-        case 4:
-            printf("quickSort()");
-        break;
-        case 5:
-            printf("quickSort()");
-        break;
-        case 6:
-            printf("quickSort()");
-        break;
-        case 7:
-            printf("quickSort()");
-        break;
-        case 8:
-            printf("quickSort()");
-        break;
-        case 9:
-            printf("quickSort()");
-        break;
-        case 10:
-            printf("quickSort()");
-        break;
-        case 11:
-            printf("quickSort()");
-        break;
-        case 12:
-            printf("quickSort()");
-        break;
-        case 13:
-            printf("quickSort()");
-        break;
-        default:
-            wprintf(L"\n\tOpção inválida.");
-    }
+void quickSort() {
+    int numeros[10];
+    int i, pivot;
 
+    printf("Entre com dez números para preencher o array, e pressione enter após digitar cada um:\n");
+    for (i = 0; i <= 9; i++) {
+        printf("%d/10: ", i);
+        scanf("%d", &numeros[i]);
+    }
 }
 
 
@@ -103,30 +78,77 @@ void menuFuncoes() {
     int opc;
     do {
         limparTela();
+        pausarExecucao(1); // Conversão implícita de int = 1 para float = 0.5
         wprintf(L"\n\t----------- FUNÇÕES -----------");
         wprintf(L"\n\tMétodos de ordenação:");
-        printf("\n\tBubble-Sort ------------------- 1");
-        printf("\n\tQuick-Sort -------------------- 2");
-        printf("\n\tMerge-Sort -------------------- 3");
-        printf("\n\tInsertion-Sort ---------------- 4");
-        printf("\n\tInsertion-Sort ---------------- 5");
-        wprintf(L"\n\tMétodos de busca:");
-        printf("\n\tÁrvore-de-busca-binária ------- 6");
-        printf("\n\tBusca-sequencial -------------- 7");
-        printf("\n\tBusca-binária-recursiva ------- 8");
-        printf("\n\tBusca-sequencial -------------- 9");
-        wprintf(L"\n\tMétodos de alocação dinâmica:");
-        printf("\n\tPilha ------------------------ 10");
-        printf("\n\tFila ------------------------- 11");
-        printf("\n\tLista-encadeada -------------- 12");
-        printf("\n\tLista-duplamente-encadeada --- 13");
-        printf("\n\tSair -------------------------- 0");
+        wprintf(L"\n\tBubble-Sort ------------------- 1");
+        wprintf(L"\n\tQuick-Sort -------------------- 2");
+        wprintf(L"\n\tMerge-Sort -------------------- 3");
+        wprintf(L"\n\tInsertion-Sort ---------------- 4");
+        wprintf(L"\n\tInsertion-Sort ---------------- 5");
+        wprintf(L"\n\n\tMétodos de busca:");
+        wprintf(L"\n\tÁrvore-de-busca-binária ------- 6");
+        wprintf(L"\n\tBusca-sequencial -------------- 7");
+        wprintf(L"\n\tBusca-binária-recursiva ------- 8");
+        wprintf(L"\n\tBusca-sequencial -------------- 9");
+        wprintf(L"\n\n\tMétodos de alocação dinâmica:");
+        wprintf(L"\n\tPilha ------------------------ 10");
+        wprintf(L"\n\tFila ------------------------- 11");
+        wprintf(L"\n\tLista-encadeada -------------- 12");
+        wprintf(L"\n\tLista-duplamente-encadeada --- 13");
+        wprintf(L"\n\n\tSair -------------------------- 0");
         wprintf(L"\n\n\tEscolha:");
         scanf("\n\t%d", &opc);
+
+        switch (opc) {
+            case 1:
+                bubbleSort();
+            break;
+            case 2:
+                quickSort();
+            break;
+            case 3:
+                printf("mergeSort()");
+            break;
+            case 4:
+                printf("quickSort()");
+            break;
+            case 5:
+                printf("quickSort()");
+            break;
+            case 6:
+                printf("quickSort()");
+            break;
+            case 7:
+                printf("quickSort()");
+            break;
+            case 8:
+                printf("quickSort()");
+            break;
+            case 9:
+                printf("quickSort()");
+            break;
+            case 10:
+                printf("quickSort()");
+            break;
+            case 11:
+                printf("quickSort()");
+            break;
+            case 12:
+                printf("quickSort()");
+            break;
+            case 13:
+                printf("quickSort()");
+            break;
+            default:
+                if(opc == 0) {
+                    printf("Encerrando Programa...");
+                    break;
+                }
+                wprintf(L"\n\tOpção inválida.");
+            }
     } while (opc != 0);
 
-    subMenuFuncoes(opc);
 }
 
 
-#endif
