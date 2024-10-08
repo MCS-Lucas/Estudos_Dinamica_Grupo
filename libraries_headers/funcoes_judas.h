@@ -10,7 +10,7 @@
 #endif
 
 
-void limparTela() {
+inline void limparTela() {
     #ifdef __linux__
         system("clear");
     #elif _WIN32
@@ -20,15 +20,15 @@ void limparTela() {
     #endif
 }
 
-void pausarExecucao(int segundos) {
+inline void pausarExecucao(int segundos) {
     #ifdef _WIN32 // Caso WIN
         Sleep(segundos * 1000); // Função converte milisegundos -> segundos
     #else // Caso genérico
-        sleep(seconds)
+        sleep(seconds);
     #endif
 }
 
-void swap(int vetor[TAM], int numA, int numB) {
+inline void swap(int vetor[TAM], int numA, int numB) {
     int aux = vetor[numA];
     vetor[numA] = vetor[numB];
     vetor[numB] = aux;
@@ -39,7 +39,7 @@ inline void bubbleSort() {
     int i, aux, contador, input;
     int *p;
 
-    wprintf(L"\n\tEntre com dez números para preencher o array, e pressione enter após digitar cada um:\n");
+    wprintf(L"\n\tEntre com dez números para preencher o array,\ne pressione enter após digitar cada um:\n");
     for (i = 0; i <= TAM-1; i++) {
         scanf("%d", &input);
         *(numeros + i) = input; // "Insere o valor ao endereço de números + i
@@ -70,16 +70,26 @@ inline void bubbleSort() {
     }
 }
 
+inline int particionamento(int *v, int inicio, int fim, int pivot) {
+    while(inicio < fim) {
+        while(inicio <= fim && v[inicio] <= pivot)
+            inicio++;
+        while(inicio < fim && v[fim] > pivot)
+            fim--;
+        swap(v, v[fim], v[inicio]);
+    }
+    return inicio;
+}
+
 
 inline void quickSort() {
     int numeros[TAM];
-    int i;
+    int i, j;
     int pivot; // Elemento usado como comparador no laço de repetição [ x < pivot > y ]
 
     wprintf(L"\n\tEntre com dez números para preencher o array, e pressione enter após digitar cada um:\n");
     for (i = 0; i <= TAM-1; i++) {
         scanf("%d", &numeros[i]);
-        getchar();
     }
 
     printf("\n\tOrdem atual dos itens no array:\n");
@@ -92,11 +102,9 @@ inline void quickSort() {
     printf("\n\tElemento central      : %d", numeros[TAM/2]);
     wprintf(L"\n\tÚltimo elemento       : %d", numeros[TAM-1]);
 
-
-    // Algorítimo de ordenação QuickSort:
-
-
-
+    wprintf(L"\n\n\tAlgorítimo de ordenação QuickSort:");
+    pivot = (numeros[0] + numeros[TAM/2] + numeros[TAM-1])/3; // Define pivot à partir da média de 3 elementos aleatórios
+    printf("\n\tPivot                 : %d", pivot);
 
 }
 
@@ -129,9 +137,11 @@ inline void menuFuncoes() {
 
         switch (opc) {
             case 1:
+                limparTela();
                 bubbleSort();
             break;
             case 2:
+                limparTela();
                 quickSort();
             break;
             case 3:
