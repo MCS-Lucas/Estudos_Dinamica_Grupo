@@ -7,6 +7,7 @@
 #include "funcoes_edu.h"
 #include "funcoes_judas.h"
 
+int * preencherArray();
 void bubbleSort();
 void quickSort();
 void menuFuncoes();
