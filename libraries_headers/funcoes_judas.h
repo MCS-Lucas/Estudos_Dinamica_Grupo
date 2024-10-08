@@ -28,21 +28,40 @@ inline void pausarExecucao(int segundos) {
     #endif
 }
 
-inline void swap(int vetor[TAM], int numA, int numB) {
+inline void swap(int vetor[TAM], int numA, int numB) { // Função que troca dois elementos de um vetor
     int aux = vetor[numA];
     vetor[numA] = vetor[numB];
     vetor[numB] = aux;
 }
 
-inline int * preencherArray() {
+inline int * preencherArray() { // Função que retorna o endereço de um array preenchido
     int i, input;
-    int * numeros = (int *) calloc(TAM, sizeof (int));
+    int * numeros = calloc(TAM, sizeof (int)); /* 'calloc' aloca memória de acordo com o tamanho passado e
+                                                        * retorna um ponteiro para o local onde houve a alocação,
+                                                        * zerando o espaço alocado.
+                                                        * 'zerar' significa colocar o byte 0 em todas as posições
+                                                        * de memória alocada */
+
     wprintf(L"\n\tEntre com dez números para preencher o array,\n\te pressione enter após digitar cada um:\n");
     for (i = 0; i <= TAM-1; i++) {
-        scanf("%d", &input);
+        scanf("\t%d", &input);
         *(numeros + i) = input; // "Insere o valor ao endereço de números + i
     }
     return numeros;
+}
+
+inline void imprimirArray(int *v, int opcao) {
+    char string[50];
+    if (opcao == 1) {
+        strcpy(string, "Elementos de array em ordem crescente:");
+    }else {
+        strcpy(string, "Ordem atual dos elementos do array:");
+    }
+    printf("\n\t%s\n", string);
+    for(int i = 0; i < TAM; i++) {
+        if(i == 0) {printf("\t");}
+        printf("%d ", v[i]);
+    }
 }
 
 inline void bubbleSort(int *v) {
@@ -50,10 +69,13 @@ inline void bubbleSort(int *v) {
     int i, aux, contador;
     int *p;
 
-    numeros = v;
+    numeros = v; // Ponteiro para inteiro 'numeros' passa a apontar para v[0]
     printf("\n\tOrdem atual dos itens no array:\n");
 
-    for ( p = numeros; p <= &numeros[TAM-1]; p++ ) {
+    for ( p = numeros; p <= &numeros[TAM-1]; p++ ) {  /* O loop continua enquanto 'p' for menor ou igual ao
+                                                       * endereço do último elemento do array (numeros.&numeros[TAM-1])
+                                                       * então o loop garante que p não ultrapasse os limites do vetor */
+
         if(p == numeros){printf("\t");} // Corrigir a margem do primeiro elemento
         printf("%d ", *p);
     }
@@ -68,11 +90,7 @@ inline void bubbleSort(int *v) {
             }
         }
     }
-    printf("\n\tElementos do array em ordem crescente:\n");
-    for(i = 0; i < TAM; i++) {
-        if(i == 0) {printf("\t");}
-        printf("%d ", numeros[i]);
-    }
+
 
     free(numeros);
 }
@@ -91,28 +109,26 @@ inline int particionamento(int *v, int inicio, int fim, int pivot) {
 
 inline void quickSort(int *v, int inicio, int fim) {
     int *numeros;
-    int i, j;
+    int i;
     int pivot; // Elemento usado como comparador no laço de repetição [ x < pivot > y ]
-
     numeros = v;
 
-    printf("\n\tOrdem atual dos itens no array:\n");
-    for( i = 0; i < TAM; i++) {
-        if( i == 0 ) {printf("\t");} // Correção da margem do primeiro elemento
-        printf("%d ", numeros[i]);
-    }
+    imprimirArray(numeros, 0);
 
     printf("\n\tPrimeiro elemento     : %d", numeros[0]);
     printf("\n\tElemento central      : %d", numeros[TAM/2]);
     wprintf(L"\n\tÚltimo elemento       : %d", numeros[TAM-1]);
 
+
     wprintf(L"\n\n\tAlgorítimo de ordenação QuickSort:");
     pivot = (numeros[0] + numeros[TAM/2] + numeros[TAM-1])/3; // Define pivot à partir da média de 3 elementos aleatórios
     printf("\n\tPivot                 : %d", pivot);
-
-
+    if(inicio < fim) {
+        int pos = particionamento(numeros, inicio, fim, pivot); // pos recebe o índice do elemento correto que está no meio
+    }
     free(numeros);
 }
+
 
 
 inline void menuFuncoes() {
