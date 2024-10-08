@@ -7,6 +7,9 @@
 #include "funcoes_edu.h"
 #include "funcoes_judas.h"
 
+void bubbleSort();
+
+
 
 int main(){
 
@@ -37,7 +40,9 @@ int main(){
                 break;
 
             case 3:
+                bubbleSort();
 
+                return 0;
                 break;
 
             case 4:
@@ -51,7 +56,7 @@ int main(){
                     break;
                 }
                 wprintf(L"Opção inválida");
-        }
+            }
     }while(op != 0);
 return 0;
 }

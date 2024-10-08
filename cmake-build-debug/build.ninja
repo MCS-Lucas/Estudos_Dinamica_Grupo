@@ -56,13 +56,6 @@ build CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj: C_COMPILER__Estudos_
   OBJECT_DIR = CMakeFiles\Estudos_Dinamica_Grupo.dir
   OBJECT_FILE_DIR = CMakeFiles\Estudos_Dinamica_Grupo.dir\src
 
-build CMakeFiles/Estudos_Dinamica_Grupo.dir/main.c.obj: C_COMPILER__Estudos_Dinamica_Grupo_unscanned_Debug C$:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo/main.c || cmake_object_order_depends_target_Estudos_Dinamica_Grupo
-  DEP_FILE = CMakeFiles\Estudos_Dinamica_Grupo.dir\main.c.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/guilh/CLionProjects/Estudos_Dinamica_Grupo/libraries_headers
-  OBJECT_DIR = CMakeFiles\Estudos_Dinamica_Grupo.dir
-  OBJECT_FILE_DIR = CMakeFiles\Estudos_Dinamica_Grupo.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Estudos_Dinamica_Grupo
@@ -71,7 +64,7 @@ build CMakeFiles/Estudos_Dinamica_Grupo.dir/main.c.obj: C_COMPILER__Estudos_Dina
 #############################################
 # Link the executable Estudos_Dinamica_Grupo.exe
 
-build Estudos_Dinamica_Grupo.exe: C_EXECUTABLE_LINKER__Estudos_Dinamica_Grupo_Debug CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj CMakeFiles/Estudos_Dinamica_Grupo.dir/main.c.obj
+build Estudos_Dinamica_Grupo.exe: C_EXECUTABLE_LINKER__Estudos_Dinamica_Grupo_Debug CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Estudos_Dinamica_Grupo.dir

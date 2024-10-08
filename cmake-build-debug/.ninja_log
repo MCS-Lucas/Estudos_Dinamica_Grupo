@@ -1,3 +1,5 @@
 # ninja log v6
-3	72	7498616766751330	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2ddc9ac4722faca1
-73	152	7498616767461076	Estudos_Dinamica_Grupo.exe	9c0168b8de88b306
+11	927	7500538808816030	CMakeFiles/Estudos_Dinamica_Grupo.dir/src/main.c.obj	2f461ce403f887d9
+928	1329	7500538817967407	Estudos_Dinamica_Grupo.exe	560100d00660e92d
+111	1243	7500485283802781	CMakeFiles/Estudos_Dinamica_Grupo.dir/main.c.obj	bd378288593f20ba
+4	477	7500542171595840	build.ninja	4c0d687d942b779f
