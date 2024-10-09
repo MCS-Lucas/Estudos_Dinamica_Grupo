@@ -30,14 +30,16 @@ inline void pausarExecucao(int segundos) {
 }
 
 inline void swap(int *vetor, int indexN1, int indexN2) { // Função que troca dois elementos de um vetor
-    int aux = vetor[indexN1]; // aux recebe o valor apontado por indexN1
-    vetor[indexN1] = vetor[indexN2]; // valor do indexN1 recebe o valor do indexN2
-    vetor[indexN2] = aux; // o valor do indexN2 recebe auxiliar
+    if (vetor != NULL) {
+        int aux = vetor[indexN1]; // aux recebe o valor apontado por indexN1
+        vetor[indexN1] = vetor[indexN2]; // valor do indexN1 recebe o valor do indexN2
+        vetor[indexN2] = aux; // o valor do indexN2 recebe auxiliar
+    }
 }
 
 inline int * preencherArray() { // Função que retorna o endereço de um array preenchido
     int i, input;
-    int * numeros = calloc(TAM, sizeof (int)); /* 'calloc' aloca memória de acordo com o tamanho passado e
+    int * numeros = calloc(TAM, sizeof(int)); /* 'calloc' aloca memória de acordo com o tamanho passado e
                                                         * retorna um ponteiro para o local onde houve a alocação,
                                                         * zerando o espaço alocado.
                                                         * 'zerar' significa colocar o byte 0 em todas as posições
@@ -134,7 +136,7 @@ inline void merge(int *v, int indexInicio, int meio, int indexFim) {
     int p1 = indexInicio;
     int p2 = meio + 1;
 
-    int j, k = 0;
+    int j, k;
 
     int *temp = (int *)malloc(tamanho*sizeof(int));
     if(temp != NULL) {
@@ -166,7 +168,7 @@ inline void merge(int *v, int indexInicio, int meio, int indexFim) {
     }
 }
 
-void mergeSort(int *v, int indexInicio, int indexFim) {
+inline void mergeSort(int *v, int indexInicio, int indexFim) {
     int meio;
     if (indexInicio < indexFim) {
         meio = (indexInicio + indexFim)/ 2; // Calculando o elemento central dinamicamente
@@ -176,11 +178,30 @@ void mergeSort(int *v, int indexInicio, int indexFim) {
     }
 }
 
-void chamadaMergeSort(int *v, int indexInicio, int indexFim) {
+inline void chamadaMergeSort(int *v, int indexInicio, int indexFim) {
     imprimirArray(v, 0);
     mergeSort(v, indexInicio, indexFim);
     imprimirArray(v, 1);
 }
+
+
+inline void insertionSort(int *v, int indexInicio, int indexFim) {
+    int i, j, aux;
+    int tamanho = indexFim - indexInicio + 1;
+    for(i = 1; i < tamanho; i++) {
+        aux = v[i]; // 'aux' guarda um valor reserva de 'i'
+        j = i - 1; // 'j' guarda a posicão anterior ao i
+
+        while(j >= 0 && aux < v[j]) {
+            v[j+1] = v[j]; /* Primeira execução: A posição 1 do vetor recebe o valor armazenado na posição 0.
+                            * Como -1 < 0 == 1, o programa sai do while e v[j+1] = aux.;   */
+            j--;
+        }
+
+        v[j+1] = aux;
+    }
+}
+
 
 inline void menuFuncoes() {
     int opc;
@@ -229,10 +250,15 @@ inline void menuFuncoes() {
                 free(vetor);
             break;
             case 4:
-                printf("quickSort()");
+                pausarExecucao(1/2);
+                vetor = preencherArray();
+                imprimirArray(vetor, 0);
+                insertionSort(vetor, 0, TAM-1);
+                imprimirArray(vetor, 1);
+                free(vetor);
             break;
             case 5:
-                printf("quickSort()");
+
             break;
             case 6:
                 printf("quickSort()");

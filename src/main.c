@@ -20,7 +20,7 @@ void swap(int vetor[TAM], int numA, int numB);
 void merge(int *v, int indexInicio, int meio, int indexFim);
 void mergeSort(int *v, int indexInicio, int indexFim);
 void chamadaMergeSort(int *v, int indexInicio, int indexFim);
-
+void insertionSort(int *v, int indexInicio, int indexFim);
 int main(){
 
     setlocale(LC_ALL, "Portuguese");
