@@ -120,7 +120,7 @@ void pilha_exe() {
             default:
 
                 if(opPilha == 0) {
-                    printf("Encerrando Programa...");
+                    printf("\nEncerrando Programa...");
                     break;
                 }
             wprintf(L"Opção inválida");
@@ -218,7 +218,7 @@ void fila_exe(){
             default:
 
                 if(opFila == 0) {
-                    printf("Encerrando Programa...");
+                    printf("\nEncerrando Programa...");
                     break;
                 }
             wprintf(L"Opção inválida");
@@ -337,6 +337,26 @@ No* remover_da_lista(No **lista) {
     return remover;
 }
 
+No* buscar_lista(No **lista) {
+    No *aux = NULL;
+    char github[30];
+
+    wprintf(L"Buscando Usuário\n");
+    wprintf(L" Insira o nome de usuário do GitHub: ");
+    getchar();
+    fgets(github, 29, stdin);
+
+    if(*lista == NULL) {
+        wprintf(L"\nSem usuários cadastrados.");
+    }else {
+        aux = *lista;
+        while(aux->proximo && _stricmp(github,aux->pessoa.Github) != 0) {
+            aux = aux->proximo;
+        }
+    }
+    return aux;
+}
+
 void imprimir_lista(No *lista) {
 
     printf("\n-------------Inseridos na Lista-----------\n");
@@ -350,7 +370,7 @@ void imprimir_lista(No *lista) {
 
 void lista_exe() {
 
-    No *remover,*lista = NULL;
+    No *remover,*buscar, *lista = NULL;
     int opLista;
 
     do {
@@ -390,26 +410,35 @@ void lista_exe() {
                     printf("--------------------\n");
                     imprimirPessoa(remover->pessoa);
                     printf("\n--------------------\n");
-                    printf("Foi removido da lista com sucesso!\n\n1");
+                    printf("Foi removido da lista com sucesso!\n\n");
                     free(remover);
                 }else {
-                    printf("Lista vazia");
+                    printf("\nLista vazia");
                 }
                 break;
 
             case 5:
-
                 imprimir_lista(lista);
                 break;
 
             case 6:
+                buscar = buscar_lista(&lista);
+                if(buscar) {
+                    printf("\nO cadastro: \n");
+                    printf("--------------------\n");
+                    imprimirPessoa(buscar->pessoa);
+                    printf("\n--------------------\n");
+                    printf("Foi da encontrado com sucesso!\n\n");
+                }else {
+                    wprintf(L"\nUsuário não encontrado");
+                }
 
                 break;
 
             default:
 
                 if(opLista == 0) {
-                    printf("Encerrando Programa...");
+                    printf("\nEncerrando Programa...");
                     break;
                 }
             wprintf(L"Opção inválida");
@@ -428,7 +457,7 @@ void menuCarvas() {
         printf("1. Menu Pilha\n");
         printf("2. Menu Fila\n");
         printf("3. Menu Lista\n");
-        wprintf(L"4. Métodos de Ordenação");
+        wprintf(L"4. Métodos de Ordenação\n");
         wprintf(L"5. Métodos de Busca\n");
         printf("0. Sair\n");
         printf("==========================\n");
@@ -457,7 +486,7 @@ void menuCarvas() {
             default:
 
                 if(opCarvas == 0) {
-                    printf("Encerrando Programa...");
+                    printf("\nEncerrando Programa...");
                     break;
                 }
             wprintf(L"Opção inválida");
