@@ -66,22 +66,15 @@ inline void imprimirArray(int *v, int opcao) {
 
 inline void bubbleSort(int *v) {
     int *numeros;
-    int i, aux, contador;
-    int *p;
+    int i, aux;
 
     numeros = v; // Ponteiro para inteiro 'numeros' passa a apontar para v[0]
     printf("\n\tOrdem atual dos itens no array:\n");
 
-    for ( p = numeros; p <= &numeros[TAM-1]; p++ ) {  /* O loop continua enquanto 'p' for menor ou igual ao
-                                                       * endereço do último elemento do array (numeros.&numeros[TAM-1])
-                                                       * então o loop garante que p não ultrapasse os limites do vetor */
-
-        if(p == numeros){printf("\t");} // Corrigir a margem do primeiro elemento
-        printf("%d ", *p);
-    }
+    imprimirArray(numeros, 0);
 
     // Algoritimo de ordenação Bubblesort:
-    for (contador = 0; contador < TAM-1; contador++) { // "10-1" Se justifica pois contador[10] não tem comparativo
+    for (int contador = 0; contador < TAM-1; contador++) { // "10-1" Se justifica pois contador[10] não tem comparativo
         for (i = 0; i < TAM - 1; i++) {
             if(numeros[i] > numeros[i+1]) { // Condição e swap
                 aux = numeros[i];
@@ -97,38 +90,38 @@ inline void bubbleSort(int *v) {
     free(numeros);
 }
 
-inline int particionamento(int *v, int inicio, int fim, int pivot) {
+inline int particionamento(int *v, int inicio, int fim) {
+    int pivot = (v[inicio] + v[fim] + v[(inicio + fim)/2])/3; // Define pivot à partir da média de 3 elementos aleatórios
     while(inicio < fim) {
         while(inicio <= fim && v[inicio] <= pivot)
-            inicio++;
+            inicio = inicio + 1;
         while(inicio < fim && v[fim] > pivot)
-            fim--;
+            fim = fim -1;
         swap(v, inicio, fim);
     }
     return inicio;
 }
 
 
-inline void quickSort(int *v, int inicio, int fim, int pivot) {
-    int *numeros = v;
+inline void quickSort(int *v, int inicio, int fim) {
     if(inicio < fim) {
-        int pos = particionamento(numeros, inicio, fim, pivot); // 'pos' recebe o índice do elemento correto que está no meio
-        quickSort(numeros, inicio, pos-1, pivot); // Chama 'quickSort' de forma recursiva para ordernar n < elemento central
-        quickSort(numeros, pos, fim, pivot); // Chama 'quickSort' de forma recursiva para ordernar n > elemento central
+        int pos = particionamento(v, inicio, fim); // 'pos' recebe o índice do elemento correto que está no meio
+        quickSort(v, inicio, pos-1); // Chama 'quickSort' de forma recursiva para ordernar n < elemento central
+        quickSort(v, pos, fim); // Chama 'quickSort' de forma recursiva para ordernar n >= elemento central
     }
 }
 
 inline void chamadaQuickSort(int *v, int inicio, int fim) {
     int *numeros = v;
-    int pivot = (numeros[0] + numeros[TAM/2] + numeros[TAM-1])/3; // Define pivot à partir da média de 3 elementos aleatórios
     imprimirArray(numeros, 0);
     printf("\n\tPrimeiro elemento     : %d", numeros[0]);
     printf("\n\tElemento central      : %d", numeros[TAM/2]);
     wprintf(L"\n\tÚltimo elemento       : %d", numeros[TAM-1]);
     wprintf(L"\n\n\tAlgorítimo de ordenação QuickSort:");
-    printf("\n\tPivot                 : %d", pivot);
-
-    quickSort(numeros, inicio, fim, pivot);
+    quickSort(numeros, inicio, fim);
+    printf("\n\tPrimeiro elemento     : %d", numeros[0]);
+    printf("\n\tElemento central      : %d", numeros[TAM/2]);
+    wprintf(L"\n\tÚltimo elemento       : %d", numeros[TAM-1]);
     imprimirArray(numeros, 1);
 }
 
@@ -136,7 +129,9 @@ inline void menuFuncoes() {
     int opc;
     int *vetor;
     do {
-        pausarExecucao(1); // Conversão implícita de int = 1 para float = 0.5
+        limparTela();
+        pausarExecucao(1);
+        printf("\n\n");
         wprintf(L"\n\t----------- FUNÇÕES -----------");
         wprintf(L"\n\tMétodos de ordenação:");
         wprintf(L"\n\tBubble-Sort ------------------- 1");
@@ -163,11 +158,12 @@ inline void menuFuncoes() {
                 pausarExecucao(1/2);
                 vetor = preencherArray();
                 bubbleSort(vetor);
+                free(vetor);
             break;
             case 2:
                 pausarExecucao(1/2);
                 vetor = preencherArray();
-                chamadaQuickSort(vetor, vetor[0], vetor[TAM-1]);
+                chamadaQuickSort(vetor, 0, TAM-1);
             break;
             case 3:
                 printf("mergeSort()");
