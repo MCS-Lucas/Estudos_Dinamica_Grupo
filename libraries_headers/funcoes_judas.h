@@ -28,10 +28,10 @@ inline void pausarExecucao(int segundos) {
     #endif
 }
 
-inline void swap(int *vetor, int numA, int numB) { // Função que troca dois elementos de um vetor
-    int aux = vetor[numA];
-    vetor[numA] = vetor[numB];
-    vetor[numB] = aux;
+inline void swap(int *vetor, int indexN1, int indexN2) { // Função que troca dois elementos de um vetor
+    int aux = vetor[indexN1]; // aux recebe o valor apontado por indexN1
+    vetor[indexN1] = vetor[indexN2]; // valor do indexN1 recebe o valor do indexN2
+    vetor[indexN2] = aux; // o valor do indexN2 recebe auxiliar
 }
 
 inline int * preencherArray() { // Função que retorna o endereço de um array preenchido
@@ -117,13 +117,54 @@ inline void chamadaQuickSort(int *v, int inicio, int fim) {
     printf("\n\tPrimeiro elemento     : %d", numeros[0]);
     printf("\n\tElemento central      : %d", numeros[TAM/2]);
     wprintf(L"\n\tÚltimo elemento       : %d", numeros[TAM-1]);
-    wprintf(L"\n\n\tAlgorítimo de ordenação QuickSort:");
+    wprintf(L"\n\n\tAlgorítimo de ordenação:");
     quickSort(numeros, inicio, fim);
     printf("\n\tPrimeiro elemento     : %d", numeros[0]);
     printf("\n\tElemento central      : %d", numeros[TAM/2]);
     wprintf(L"\n\tÚltimo elemento       : %d", numeros[TAM-1]);
     imprimirArray(numeros, 1);
 }
+
+inline void merge(int *v, int indexInicio, int indexFim) {
+
+    int isFimP1 = 0, isFimP2 = 0;
+    int meio = TAM/2;
+
+    int p1 = indexInicio;
+    int p2 = meio;
+
+    int j, k;
+
+    int *temp = malloc(TAM*sizeof(int));
+    if(temp != NULL) {
+        for(int i = 0; i < TAM; i++) { // Percorre o vetor alocado 'temp'
+            if(!isFimP1 && isFimP2) {
+                if(v[p1] < v[p2])
+                    temp[i] = v[p1++];
+                else
+                    temp[i] = v[p2++];
+            }
+            if(p1 > meio)       /* Verificação boleana para saber se um dos subconjuntos chegou ao fim */
+                isFimP1 = 1;
+            if(p2 > indexFim)
+                isFimP2 = 1;
+            else {
+                if (!isFimP1)
+                    temp[i] = v[p1++];
+                /* Caso o p1 ainda tiver valores não comparados
+                 * o temp [i] recebe o último valor não lido.
+                 * Como 'v' é separdado pelo meio, eles sempre tem no máximo 1 elemento de diferença*/
+                else
+                    temp[i] = v[p2++];
+            }
+        }
+        for (j = 0, k = indexInicio; j < TAM; j++, k++) {
+            v[k] = temp[j];
+        }
+        free(temp);
+    }
+}
+
 
 inline void menuFuncoes() {
     int opc;
@@ -154,13 +195,13 @@ inline void menuFuncoes() {
         scanf("\n\t%d", &opc);
 
         switch (opc) {
-            case 1:
+            case 1: // Bubble Sort
                 pausarExecucao(1/2);
                 vetor = preencherArray();
                 bubbleSort(vetor);
                 free(vetor);
             break;
-            case 2:
+            case 2: // Quick Sort
                 pausarExecucao(1/2);
                 vetor = preencherArray();
                 chamadaQuickSort(vetor, 0, TAM-1);
