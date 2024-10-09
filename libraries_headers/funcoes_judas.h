@@ -28,7 +28,7 @@ inline void pausarExecucao(int segundos) {
     #endif
 }
 
-inline void swap(int vetor[TAM], int numA, int numB) { // Função que troca dois elementos de um vetor
+inline void swap(int *vetor, int numA, int numB) { // Função que troca dois elementos de um vetor
     int aux = vetor[numA];
     vetor[numA] = vetor[numB];
     vetor[numB] = aux;
@@ -91,6 +91,8 @@ inline void bubbleSort(int *v) {
         }
     }
 
+    imprimirArray(numeros, 1);
+
 
     free(numeros);
 }
@@ -101,35 +103,34 @@ inline int particionamento(int *v, int inicio, int fim, int pivot) {
             inicio++;
         while(inicio < fim && v[fim] > pivot)
             fim--;
-        swap(v, v[fim], v[inicio]);
+        swap(v, inicio, fim);
     }
     return inicio;
 }
 
 
-inline void quickSort(int *v, int inicio, int fim) {
-    int *numeros;
-    int i;
-    int pivot; // Elemento usado como comparador no laço de repetição [ x < pivot > y ]
-    numeros = v;
+inline void quickSort(int *v, int inicio, int fim, int pivot) {
+    int *numeros = v;
+    if(inicio < fim) {
+        int pos = particionamento(numeros, inicio, fim, pivot); // 'pos' recebe o índice do elemento correto que está no meio
+        quickSort(numeros, inicio, pos-1, pivot); // Chama 'quickSort' de forma recursiva para ordernar n < elemento central
+        quickSort(numeros, pos, fim, pivot); // Chama 'quickSort' de forma recursiva para ordernar n > elemento central
+    }
+}
 
+inline void chamadaQuickSort(int *v, int inicio, int fim) {
+    int *numeros = v;
+    int pivot = (numeros[0] + numeros[TAM/2] + numeros[TAM-1])/3; // Define pivot à partir da média de 3 elementos aleatórios
     imprimirArray(numeros, 0);
-
     printf("\n\tPrimeiro elemento     : %d", numeros[0]);
     printf("\n\tElemento central      : %d", numeros[TAM/2]);
     wprintf(L"\n\tÚltimo elemento       : %d", numeros[TAM-1]);
-
-
     wprintf(L"\n\n\tAlgorítimo de ordenação QuickSort:");
-    pivot = (numeros[0] + numeros[TAM/2] + numeros[TAM-1])/3; // Define pivot à partir da média de 3 elementos aleatórios
     printf("\n\tPivot                 : %d", pivot);
-    if(inicio < fim) {
-        int pos = particionamento(numeros, inicio, fim, pivot); // pos recebe o índice do elemento correto que está no meio
-    }
-    free(numeros);
+
+    quickSort(numeros, inicio, fim, pivot);
+    imprimirArray(numeros, 1);
 }
-
-
 
 inline void menuFuncoes() {
     int opc;
@@ -166,7 +167,7 @@ inline void menuFuncoes() {
             case 2:
                 pausarExecucao(1/2);
                 vetor = preencherArray();
-                quickSort(vetor, vetor[0], vetor[TAM-1]);
+                chamadaQuickSort(vetor, vetor[0], vetor[TAM-1]);
             break;
             case 3:
                 printf("mergeSort()");

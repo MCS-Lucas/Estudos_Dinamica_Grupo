@@ -13,7 +13,10 @@ void quickSort();
 void menuFuncoes();
 void limparTela();
 void pausarExecucao(int segundos);
-
+void chamadaQuickSort(int *v, int inicio, int fim);
+int particionamento(int *v, int inicio, int fim, int pivot);
+void imprimirArray(int *v, int opcao);
+void swap(int vetor[TAM], int numA, int numB);
 
 int main(){
 
