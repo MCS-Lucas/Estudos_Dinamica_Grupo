@@ -17,7 +17,9 @@ void chamadaQuickSort(int *v, int inicio, int fim);
 int particionamento(int *v, int inicio, int fim);
 void imprimirArray(int *v, int opcao);
 void swap(int vetor[TAM], int numA, int numB);
-void merge(int *v, int indexInicio, int indexFim);
+void merge(int *v, int indexInicio, int meio, int indexFim);
+void mergeSort(int *v, int indexInicio, int indexFim);
+void chamadaMergeSort(int *v, int indexInicio, int indexFim);
 
 int main(){
 

@@ -1,6 +1,7 @@
 //Aqui serão declaradas as funções feitas pelo Guilherme Yago
 #ifndef FUNCOES_JUDAS_H
 #define FUNCOES_JUDAS_H
+#include <tgmath.h>
 #endif
 #define TAM 10
 #ifdef _WIN32
@@ -125,30 +126,30 @@ inline void chamadaQuickSort(int *v, int inicio, int fim) {
     imprimirArray(numeros, 1);
 }
 
-inline void merge(int *v, int indexInicio, int indexFim) {
+inline void merge(int *v, int indexInicio, int meio, int indexFim) {
 
     int isFimP1 = 0, isFimP2 = 0;
-    int meio = TAM/2;
-
+    int i;
+    int tamanho = indexFim-indexInicio+1;
     int p1 = indexInicio;
-    int p2 = meio;
+    int p2 = meio + 1;
 
-    int j, k;
+    int j, k = 0;
 
-    int *temp = malloc(TAM*sizeof(int));
+    int *temp = (int *)malloc(tamanho*sizeof(int));
     if(temp != NULL) {
-        for(int i = 0; i < TAM; i++) { // Percorre o vetor alocado 'temp'
-            if(!isFimP1 && isFimP2) {
+        for(i = 0; i < tamanho; i++) { // Percorre o vetor alocado 'temp'
+            if(!isFimP1 && !isFimP2) {
                 if(v[p1] < v[p2])
                     temp[i] = v[p1++];
                 else
                     temp[i] = v[p2++];
-            }
-            if(p1 > meio)       /* Verificação boleana para saber se um dos subconjuntos chegou ao fim */
-                isFimP1 = 1;
-            if(p2 > indexFim)
-                isFimP2 = 1;
-            else {
+
+                if(p1 > meio)       /* Verificação boleana para saber se um dos subconjuntos chegou ao fim */
+                    isFimP1 = 1;
+                if(p2 > indexFim)
+                    isFimP2 = 1;
+            } else {
                 if (!isFimP1)
                     temp[i] = v[p1++];
                 /* Caso o p1 ainda tiver valores não comparados
@@ -158,19 +159,33 @@ inline void merge(int *v, int indexInicio, int indexFim) {
                     temp[i] = v[p2++];
             }
         }
-        for (j = 0, k = indexInicio; j < TAM; j++, k++) {
+        for (j = 0, k = indexInicio; j < tamanho; j++, k++) {
             v[k] = temp[j];
         }
         free(temp);
     }
 }
 
+void mergeSort(int *v, int indexInicio, int indexFim) {
+    int meio;
+    if (indexInicio < indexFim) {
+        meio = (indexInicio + indexFim)/ 2; // Calculando o elemento central dinamicamente
+        mergeSort(v, indexInicio, meio); // Ordenando primeira metade
+        mergeSort(v, meio+1, indexFim); // Ordenando segunda metade
+        merge(v, indexInicio, meio, indexFim); // Mergeando metades ordenadas
+    }
+}
+
+void chamadaMergeSort(int *v, int indexInicio, int indexFim) {
+    imprimirArray(v, 0);
+    mergeSort(v, indexInicio, indexFim);
+    imprimirArray(v, 1);
+}
 
 inline void menuFuncoes() {
     int opc;
     int *vetor;
     do {
-        limparTela();
         pausarExecucao(1);
         printf("\n\n");
         wprintf(L"\n\t----------- FUNÇÕES -----------");
@@ -196,7 +211,7 @@ inline void menuFuncoes() {
 
         switch (opc) {
             case 1: // Bubble Sort
-                pausarExecucao(1/2);
+                pausarExecucao(1/2); // Conversão implícita de int -> double
                 vetor = preencherArray();
                 bubbleSort(vetor);
                 free(vetor);
@@ -205,9 +220,13 @@ inline void menuFuncoes() {
                 pausarExecucao(1/2);
                 vetor = preencherArray();
                 chamadaQuickSort(vetor, 0, TAM-1);
+                free(vetor);
             break;
             case 3:
-                printf("mergeSort()");
+                pausarExecucao(1/2);
+                vetor = preencherArray();
+                chamadaMergeSort(vetor, 0, TAM-1);
+                free(vetor);
             break;
             case 4:
                 printf("quickSort()");
