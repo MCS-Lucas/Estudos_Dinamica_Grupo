@@ -202,6 +202,18 @@ inline void insertionSort(int *v, int indexInicio, int indexFim) {
     }
 }
 
+inline void selectionSort(int *v, int indexFim, int indexInicio) {
+    int i, j, aux;
+    int tamanho = indexFim - indexInicio + 1;
+    for (i = 0; i < tamanho-2; i++) {
+        aux = v[i];
+        j = i + 1;
+        if(v[i] < v[j]) {
+
+        }
+
+    }
+}
 
 inline void menuFuncoes() {
     int opc;
@@ -215,7 +227,7 @@ inline void menuFuncoes() {
         wprintf(L"\n\tQuick-Sort -------------------- 2");
         wprintf(L"\n\tMerge-Sort -------------------- 3");
         wprintf(L"\n\tInsertion-Sort ---------------- 4");
-        wprintf(L"\n\tInsertion-Sort ---------------- 5");
+        wprintf(L"\n\tSelection-Sort ---------------- 5");
         wprintf(L"\n\n\tMétodos de busca:");
         wprintf(L"\n\tÁrvore-de-busca-binária ------- 6");
         wprintf(L"\n\tBusca-sequencial -------------- 7");
