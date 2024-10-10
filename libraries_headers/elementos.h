@@ -10,6 +10,10 @@ typedef struct{
 
 }Pessoa;
 
+typedef struct no {
+    int valor;
+    struct no *direita, *esquerda;
+}NoArv;
 
 #endif
 
