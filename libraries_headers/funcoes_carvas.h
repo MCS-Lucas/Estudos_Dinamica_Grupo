@@ -637,21 +637,224 @@ void bubbleSortListaNome(No **lista) {
 
 void selectionSortPilhaIdade(No **topo) {
 
+    ListasEx pilha;
+    pilha.Pilha = NULL;
+    No *aux,*i, *j, *menor, troca;
+
+    while(*topo) {
+        aux = *topo;
+        *topo = (*topo)->proximo;
+        aux->proximo = pilha.Pilha;
+        pilha.Pilha = aux;
+    }
+
+    for(i = pilha.Pilha; i ; i = i->proximo) {
+        menor = i;
+        for(j = i->proximo; j ; j = j->proximo) {
+            if(j->pessoa.Idade < menor->pessoa.Idade) {
+                menor = j;
+            }
+        }
+
+        if(menor != i) {
+            troca.pessoa = i->pessoa;
+            i->pessoa = menor->pessoa;
+            menor->pessoa = troca.pessoa;
+        }
+    }
+    while(pilha.Pilha) {
+        aux = pilha.Pilha;
+        pilha.Pilha = pilha.Pilha->proximo;
+        aux->proximo = *topo;
+        *topo = aux;
+    }
 }
 void selectionSortPilhaNome(No **topo) {
 
+    ListasEx pilha;
+    pilha.Pilha = NULL;
+    No *aux, *i,*j, *menor, troca;
+
+    while (*topo) {
+        aux = *topo;
+        *topo = (*topo)->proximo;
+        aux->proximo = pilha.Pilha;
+        pilha.Pilha = aux;
+    }
+
+    for(i = pilha.Pilha; i ; i = i->proximo) {
+        menor = i;
+        for(j = i->proximo; j ; j = j->proximo) {
+            if(_stricmp(j->pessoa.Nome, menor->pessoa.Nome) < 0) {
+                menor = j;
+            }
+        }
+
+        if(menor != i) {
+            troca.pessoa = i->pessoa;
+            i->pessoa = menor->pessoa;
+            menor->pessoa = troca.pessoa;
+        }
+    }
+
+    while(pilha.Pilha) {
+        aux = pilha.Pilha;
+        pilha.Pilha = pilha.Pilha->proximo;
+        aux->proximo = *topo;
+        *topo = aux;
+    }
 }
 void selectionSortFilaIdade(No **fila) {
 
+    ListasEx f;
+    f.Fila = NULL;
+    No *aux,*i, *j, *menor, troca, *ultimo = NULL;
+
+    while(*fila) {
+        aux = *fila;
+        *fila = (*fila)->proximo;
+        aux->proximo = f.Fila;
+        f.Fila = aux;
+    }
+
+    for(i = f.Fila; i ; i = i->proximo) {
+        menor = i;
+        for(j = i->proximo; j ; j = j->proximo) {
+            if(j->pessoa.Idade < menor->pessoa.Idade) {
+                menor = j;
+            }
+        }
+
+        if(menor != i) {
+            troca.pessoa = i->pessoa;
+            i->pessoa = menor->pessoa;
+            menor->pessoa = troca.pessoa;
+        }
+    }
+    while(f.Fila) {
+        aux = f.Fila;
+        f.Fila = f.Fila->proximo;
+        aux->proximo = *fila;
+        *fila = aux;
+
+        if (*fila == NULL) {
+            *fila = aux;
+            ultimo = aux;  // Manter o controle do fim da fila
+        } else {
+            ultimo->proximo = aux;
+            ultimo = aux;
+        }
+    }
 }
 void selectionSortFilaNome(No **fila) {
+    ListasEx f;
+    f.Fila = NULL;
+    No *aux, *i,*j, *menor, troca,*ultimo = NULL;
 
+    while (*fila) {
+        aux = *fila;
+        *fila = (*fila)->proximo;
+        aux->proximo = f.Fila;
+        f.Fila = aux;
+    }
+
+    for(i = f.Fila; i ; i = i->proximo) {
+        menor = i;
+        for(j = i->proximo; j ; j = j->proximo) {
+            if(_stricmp(j->pessoa.Nome, menor->pessoa.Nome) < 0) {
+                menor = j;
+            }
+        }
+
+        if(menor != i) {
+            troca.pessoa = i->pessoa;
+            i->pessoa = menor->pessoa;
+            menor->pessoa = troca.pessoa;
+        }
+    }
+
+    while(f.Fila) {
+        aux = f.Fila;
+        f.Fila = f.Fila->proximo;
+        aux->proximo = *fila;
+        *fila = aux;
+
+        if (*fila == NULL) {
+            *fila = aux;
+            ultimo = aux;  // Manter o controle do fim da fila
+        } else {
+            ultimo->proximo = aux;
+            ultimo = aux;
+        }
+    }
 }
 void selectionSortListaIdade(No **lista) {
 
+    ListasEx l;
+    l.Lista = NULL;
+    No *aux,*i, *j, *menor, troca;
+
+    while(*lista) {
+        aux = *lista;
+        *lista = (*lista)->proximo;
+        aux->proximo = l.Lista;
+        l.Lista = aux;
+    }
+
+    for(i = l.Lista; i ; i = i->proximo) {
+        menor = i;
+        for(j = i->proximo; j ; j = j->proximo) {
+            if(j->pessoa.Idade < menor->pessoa.Idade) {
+                menor = j;
+            }
+        }
+
+        if(menor != i) {
+            troca.pessoa = i->pessoa;
+            i->pessoa = menor->pessoa;
+            menor->pessoa = troca.pessoa;
+        }
+    }
+    while(l.Lista) {
+        aux = l.Lista;
+        l.Lista = l.Lista->proximo;
+        aux->proximo = *lista;
+        *lista = aux;
+    }
 }
 void selectionSortListaNome(No **lista) {
 
+    ListasEx l;
+    l.Lista = NULL;
+    No *aux,*i, *j, *menor, troca;
+
+    while(*lista) {
+        aux = *lista;
+        *lista = (*lista)->proximo;
+        aux->proximo = l.Lista;
+        l.Lista = aux;
+    }
+
+    for(i = l.Lista; i ; i = i->proximo) {
+        menor = i;
+        for(j = i->proximo; j ; j = j->proximo) {
+            if(_stricmp(j->pessoa.Nome, menor->pessoa.Nome) < 0) {
+                menor = j;
+            }
+        }
+
+        if(menor != i) {
+            troca.pessoa = i->pessoa;
+            i->pessoa = menor->pessoa;
+            menor->pessoa = troca.pessoa;
+        }
+    }
+    while(l.Lista) {
+        aux = l.Lista;
+        l.Lista = l.Lista->proximo;
+        aux->proximo = *lista;
+        *lista = aux;
+    }
 }
 
 //Metodos de ordenação para as estruturas (InsertionSort)
