@@ -512,7 +512,7 @@ void bubbleSortFilaIdade(No **fila) {
         aux = f.Fila;
 
         while(aux && aux->proximo != laux) {
-            if(aux->pessoa.Idade < aux->proximo->pessoa.Idade) {
+            if(aux->pessoa.Idade < aux->proximo->pessoa.Idade){
                 auxP = aux->pessoa;
                 aux->pessoa = aux->proximo->pessoa;
                 aux->proximo->pessoa = auxP;
@@ -632,6 +632,221 @@ void bubbleSortListaNome(No **lista) {
         laux = aux;
     }while(troca);
 }
+
+//Metodos de ordenação para as estruturas(SelectionSort)
+
+void selectionSortPilhaIdade(No **topo) {
+
+}
+void selectionSortPilhaNome(No **topo) {
+
+}
+void selectionSortFilaIdade(No **fila) {
+
+}
+void selectionSortFilaNome(No **fila) {
+
+}
+void selectionSortListaIdade(No **lista) {
+
+}
+void selectionSortListaNome(No **lista) {
+
+}
+
+//Metodos de ordenação para as estruturas (InsertionSort)
+
+void insertionSortPilhaIdade(No **topo) {
+    ListasEx pilha;
+    No *aux, *i, *auxAnt;
+
+    pilha.Pilha = NULL;
+
+    while(*topo) {
+        aux = *topo;
+        *topo = (*topo)->proximo;
+        aux->proximo = pilha.Pilha;
+        pilha.Pilha = aux;
+    }
+    while(pilha.Pilha) {
+        aux = pilha.Pilha;
+        pilha.Pilha = pilha.Pilha->proximo;
+
+    if(*topo == NULL || aux->pessoa.Idade <= (*topo)->pessoa.Idade) {
+        aux->proximo = *topo;
+        *topo = aux;
+    }else {
+        auxAnt = *topo;
+        i = auxAnt->proximo;
+        while(i && aux->pessoa.Idade > i->pessoa.Idade) {
+            auxAnt = i;
+            i = i->proximo;
+        }
+        aux->proximo = i;
+        auxAnt->proximo = aux;
+        }
+    }
+}
+void insertionSortPilhaNome(No **topo) {
+
+    ListasEx pilha;
+    No *aux, *auxAnt, *i;
+    pilha.Pilha = NULL;
+
+    while(*topo) {
+        aux = *topo;
+        *topo = (*topo)->proximo;
+        aux->proximo = pilha.Pilha;
+        pilha.Pilha = aux;
+    }
+    while(pilha.Pilha) {
+
+        aux = pilha.Pilha;
+        pilha.Pilha = pilha.Pilha->proximo;
+
+        if(*topo == NULL || _stricmp(aux->pessoa.Nome, (*topo)->pessoa.Nome) < 0) {
+            aux->proximo = *topo;
+            *topo = aux;
+        }else {
+            auxAnt = *topo;
+            i = auxAnt->proximo;
+            while(i && _stricmp(aux->pessoa.Nome, i->pessoa.Nome) > 0) {
+                auxAnt = i;
+                i = i->proximo;
+            }
+            aux->proximo = i;
+            auxAnt->proximo = aux;
+        }
+    }
+}
+void insertionSortFilaIdade(No **fila) {
+
+    ListasEx f;
+    No *aux, *auxAnt, *i, *temp;
+    temp = *fila;
+
+    f.Fila = NULL;
+
+    while (temp) {
+        aux = temp->proximo;
+        temp->proximo = f.Fila;
+        f.Fila = temp;
+        temp = aux;
+    }
+    while(f.Fila) {
+        aux = f.Fila;
+        f.Fila = f.Fila->proximo;
+        if(*fila == NULL || aux->pessoa.Idade <= (*fila)->pessoa.Idade) {
+            aux->proximo = *fila;
+            *fila = aux;
+        }else {
+            auxAnt = *fila;
+            i = auxAnt->proximo;
+            while(i && aux->pessoa.Idade > i->pessoa.Idade) {
+                auxAnt = i;
+                i = i->proximo;
+            }
+            aux->proximo = i;
+            auxAnt->proximo = aux;
+        }
+    }
+
+}
+void insertionSortFilaNome(No **fila) {
+
+    ListasEx f;
+    No *aux, *auxAnt, *i, *temp;
+    temp = *fila;
+
+    f.Fila = NULL;
+
+    while (temp) {
+        aux = temp->proximo;
+        temp->proximo = f.Fila;
+        f.Fila = temp;
+        temp = aux;
+    }
+    while(f.Fila) {
+        aux = f.Fila;
+        f.Fila = f.Fila->proximo;
+        if(*fila == NULL || _stricmp(aux->pessoa.Nome, (*fila)->pessoa.Nome) < 0) {
+            aux->proximo = *fila;
+            *fila = aux;
+        }else {
+            auxAnt = *fila;
+            i = auxAnt->proximo;
+            while(i && _stricmp(aux->pessoa.Nome,i->pessoa.Nome) > 0) {
+                auxAnt = i;
+                i = i->proximo;
+            }
+            aux->proximo = i;
+            auxAnt->proximo = aux;
+        }
+    }
+}
+void insertionSortListaIdade(No **lista) {
+
+    ListasEx l;
+    No *aux, *auxAnt, *i;
+    l.Lista = NULL;
+
+    while(*lista) {
+        aux = *lista;
+        *lista = (*lista)->proximo;
+        aux->proximo = l.Lista;
+        l.Lista = aux;
+    }
+    while(l.Lista) {
+        aux = l.Lista;
+        l.Lista = l.Lista->proximo;
+        if(*lista == NULL || aux->pessoa.Idade <= (*lista)->pessoa.Idade) {
+            aux->proximo = *lista;
+            *lista = aux;
+        }else {
+            auxAnt = *lista;
+            i = auxAnt->proximo;
+            while(i && aux->pessoa.Idade > i->pessoa.Idade) {
+                auxAnt = i;
+                i = i->proximo;
+            }
+            aux->proximo = i;
+            auxAnt->proximo = aux;
+        }
+    }
+}
+void insertionSortListaNome(No **lista) {
+
+    ListasEx l;
+    No *aux, *auxAnt, *i;
+    l.Lista = NULL;
+
+    while(*lista) {
+        aux = *lista;
+        *lista = (*lista)->proximo;
+        aux->proximo = l.Lista;
+        l.Lista = aux;
+    }
+    while(l.Lista) {
+        aux = l.Lista;
+        l.Lista = l.Lista->proximo;
+        if(*lista == NULL || _stricmp(aux->pessoa.Nome,(*lista)->pessoa.Nome) < 0) {
+            aux->proximo = *lista;
+            *lista = aux;
+        }else {
+            auxAnt = *lista;
+            i = auxAnt->proximo;
+            while(i && _stricmp(aux->pessoa.Nome,i->pessoa.Nome) > 0){
+                auxAnt = i;
+                i = i->proximo;
+            }
+            aux->proximo = i;
+            auxAnt->proximo = aux;
+        }
+    }
+}
+
+//Metodos de ordenação para as estruturas (QuickSort)
+//Metodos de ordenação para as estruturas (MergeSort)
 
 //FUNÇÃO EXTRA! MISTURAR AS LISTAS, PILHAS E FILAS(WIP)
 /*void mesclar_Listas_Nome(ListasEx **Tipolista, No **Novalista) {
@@ -912,7 +1127,7 @@ void pilha_exe() {
             break;
 
             case 4:
-                bubbleSortPilhaNome(&topo);
+                insertionSortPilhaNome(&topo);
                 imprimir_pilha(topo);
                 break;
 
