@@ -214,9 +214,29 @@ inline void selectionSort(int *v, int indexInicio, int indexFim) {
     }
 }
 
+inline NoArv* inserirNaArvoreBinaria(NoArv *raiz, int num)  {
+    if (raiz == NULL)   {
+        NoArv *aux = malloc(sizeof(NoArv));
+        aux->valor = num;
+        aux->esquerda = NULL;
+        aux->direita = NULL;
+        return aux;
+    }
+    else {
+        if(raiz->valor > num)
+             raiz->esquerda = inserirNaArvoreBinaria(raiz->esquerda, num);
+        else
+            raiz->direita = inserirNaArvoreBinaria(raiz->direita, num);
+        return raiz;
+    }
+}
+
+
+
 inline void menuFuncoes() {
     int opc;
     int *vetor;
+    NoArv *raiz = NULL;
     do {
         pausarExecucao(1);
         printf("\n\n");
@@ -276,8 +296,13 @@ inline void menuFuncoes() {
                 imprimirArray(vetor, 1);
                 free(vetor);
             break;
-            case 6:
-                printf("quickSort()");
+            case 6: // Árvore de Busca Binária
+                pausarExecucao(1/2);
+                vetor = preencherArray();
+                for (int i = 0; i < TAM; i++) {
+                    inserirNaArvoreBinaria(raiz, vetor[i]);
+                }
+
             break;
             case 7:
                 printf("quickSort()");

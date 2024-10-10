@@ -22,10 +22,16 @@ void mergeSort(int *v, int indexInicio, int indexFim);
 void chamadaMergeSort(int *v, int indexInicio, int indexFim);
 void insertionSort(int *v, int indexInicio, int indexFim);
 void selectionSort(int *v, int indexInicio, int indexFim);
+NoArv* inserirNaArvoreBinaria(NoArv *raiz, int num);
+
+
+
 
 int main(){
 
     setlocale(LC_ALL, "Portuguese");
+
+    NoArv *raiz =  NULL;
 
     int op;
 
