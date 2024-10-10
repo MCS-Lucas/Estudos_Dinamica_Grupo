@@ -29,6 +29,9 @@ void inserirFimLista(NoLista **lista, int valor);
 void imprimirLista(NoLista **lista);
 
 
+
+
+
 int main(){
 
     setlocale(LC_ALL, "Portuguese");
