@@ -2,6 +2,7 @@
 #ifndef FUNCOES_JUDAS_H
 #define FUNCOES_JUDAS_H
 #include <elementos.h>
+#include <elementos.h>
 #include <tgmath.h>
 #endif
 #define TAM 10
@@ -217,17 +218,77 @@ inline void selectionSort(int *v, int indexInicio, int indexFim) {
 
 
 inline NoPilha * empilhar(NoPilha *topo, int valor) {
-    NoPilha * aux = malloc(sizeof(NoPilha));
-    if (aux) {
-        aux->valor = valor;
-        aux->proximo = topo; // O Nó que representava o topo agora está sendo apontado pelo último nó inserido.
-        return aux; // Retorna o novo Nó para representar o início da nossa pilha.
+    NoPilha * novo = malloc(sizeof(NoPilha));
+    if (novo) {
+        novo->valor = valor;
+        novo->proximo = topo; // O Nó que representava o topo agora está sendo apontado pelo último nó inserido.
+        return novo; // Retorna o novo Nó para representar o início da nossa pilha.
     }
     else
         printf("\nErro ao alocar memória.");
-
-
 }
+
+inline void inserirFila(NoFila **fila, int num) {
+    NoFila *aux ,*novo = malloc(sizeof(NoFila));
+    if(novo) {
+        novo->valor = num;
+        novo->proximo = NULL; // Garante que o nó representa o final da fila.
+        if(*fila == NULL) { // O conteúdo apontado pelo ponteiro é NULL? Ou seja: a fila está vazia?
+            *fila = novo;
+        } else {
+            aux = *fila;
+            while (aux->proximo != NULL)
+                aux = aux->proximo;
+            aux->proximo = novo;
+        }
+    }else
+        printf("\n\tErro ao alocar memória.");
+}
+
+inline void imprimirFila(NoFila **fila) {
+    NoFila *aux;
+    if(*fila != NULL) { // Caso a fila não esteja vazia
+        aux = *fila; // Aux recebe o conteudo desreferenciado de fila
+        while(aux != NULL) {
+            printf("%d ", aux->valor);
+            aux = aux->proximo;
+        }
+    }
+    else
+        printf("\n\tA fila está vazia.");
+}
+
+
+inline void inserirFimLista(NoLista **lista, int valor) {
+    NoLista *aux, *novo = malloc(sizeof(NoLista));
+    if(novo) {
+        novo->valor = valor;
+        novo->proximo = NULL;
+        if(*lista==NULL)
+            *lista = novo;
+        else {
+            aux = *lista;
+            while(aux->proximo!=NULL)
+                aux = aux->proximo;
+            aux->proximo = novo;
+        }
+    }else
+        printf("\n\tErro ao alocar memória");
+}
+
+inline void imprimirLista(NoLista **lista) {
+    NoLista *aux;
+    if(*lista != NULL) { // Caso a fila não esteja vazia
+        aux = *lista; // Aux recebe o conteudo desreferenciado de fila
+        while(aux != NULL) {
+            printf("%d ", aux->valor);
+            aux = aux->proximo;
+        }
+    }
+    else
+        printf("\n\tA lista está vazia.");
+}
+
 
 inline void menuFuncoes() {
     int opc;
@@ -314,11 +375,26 @@ inline void menuFuncoes() {
                 }
                 free(topo);
             break;
-            case 11:
-                printf("quickSort()");
+            case 11: // Fila
+                pausarExecucao(1/2);
+                NoFila *fila = NULL;
+                vetor = preencherArray();
+                printf("\n\tValores da fila:\n\t");
+                for(int i = 0; i < TAM; i++) {
+                    inserirFila(&fila, vetor[i]);
+                }
+                imprimirFila(&fila);
+                free(fila);
             break;
-            case 12:
-                printf("quickSort()");
+            case 12: // Lista
+                pausarExecucao(1/2);
+                NoLista *lista = NULL;
+                vetor = preencherArray();
+                printf("\n\tValores da lista encadeada:\n\t");
+                for(int i = 0; i < TAM; i++)
+                    inserirFimLista(&lista, vetor[i]);
+                imprimirLista(&lista);
+                free(lista);
             break;
             case 13:
                 printf("quickSort()");

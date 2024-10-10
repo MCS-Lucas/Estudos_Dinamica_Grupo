@@ -14,5 +14,16 @@ typedef struct noPilha{
     int valor;
     struct noPilha *proximo;
 }NoPilha;
+
+typedef struct noFila{
+    int valor;
+    struct noFila *proximo;
+}NoFila;
+
+typedef struct noLista {
+    int valor;
+    struct noLista *proximo;
+}NoLista;
+
 #endif
 

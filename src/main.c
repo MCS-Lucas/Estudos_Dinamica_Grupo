@@ -23,6 +23,11 @@ void chamadaMergeSort(int *v, int indexInicio, int indexFim);
 void insertionSort(int *v, int indexInicio, int indexFim);
 void selectionSort(int *v, int indexInicio, int indexFim);
 NoPilha * empilhar(NoPilha *topo, int valor);
+void inserirFila(NoFila **fila, int num);
+void imprimirFila(NoFila **fila);
+void inserirFimLista(NoLista **lista, int valor);
+void imprimirLista(NoLista **lista);
+
 
 int main(){
 
