@@ -27,7 +27,8 @@ void inserirFila(NoFila **fila, int num);
 void imprimirFila(NoFila **fila);
 void inserirFimLista(NoLista **lista, int valor);
 void imprimirLista(NoLista **lista);
-
+void inserirInicioListaDupla(NoListaDupla **lista_dupla, int valor);
+void imprimirListaDupla(NoListaDupla **lista_dupla);
 
 
 

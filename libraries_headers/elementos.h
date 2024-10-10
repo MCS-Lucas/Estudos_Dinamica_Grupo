@@ -25,5 +25,10 @@ typedef struct noLista {
     struct noLista *proximo;
 }NoLista;
 
+typedef struct noListaDupla {
+    int valor;
+    struct noListaDupla *proximo;
+    struct noListaDupla *anterior;
+}NoListaDupla;
 #endif
 

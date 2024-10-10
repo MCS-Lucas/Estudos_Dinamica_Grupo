@@ -3,6 +3,7 @@
 #define FUNCOES_JUDAS_H
 #include <elementos.h>
 #include <elementos.h>
+#include <elementos.h>
 #include <tgmath.h>
 #endif
 #define TAM 10
@@ -289,6 +290,35 @@ inline void imprimirLista(NoLista **lista) {
         printf("\n\tA lista está vazia.");
 }
 
+inline void inserirInicioListaDupla(NoListaDupla **lista_dupla, int valor) {
+    NoListaDupla *novo = malloc(sizeof(NoListaDupla));
+    if (novo) {
+        novo->valor = valor;
+        novo->proximo = *lista_dupla;
+        novo->anterior = NULL;
+        if (*lista_dupla)
+            (*lista_dupla)->anterior = novo;
+        *lista_dupla = novo;
+
+    }else
+        printf("\n\tErro ao alocar memória.");
+
+}
+
+
+inline void imprimirListaDupla(NoListaDupla **lista_dupla) {
+    NoListaDupla *aux;
+    if(*lista_dupla != NULL) { // Caso a fila não esteja vazia
+        aux = *lista_dupla; // Aux recebe o conteudo desreferenciado de fila
+        while(aux != NULL) {
+            printf("%d ", aux->valor);
+            aux = aux->proximo;
+        }
+    }
+    else
+        printf("\n\tA lista-duplamente-encadeada está vazia.");
+}
+
 
 inline void menuFuncoes() {
     int opc;
@@ -397,7 +427,14 @@ inline void menuFuncoes() {
                 free(lista);
             break;
             case 13:
-                printf("quickSort()");
+                pausarExecucao(1/2);
+                NoLista *lista_dupla = NULL;
+                vetor = preencherArray();
+                printf("\n\tValores da lista duplamente encadeada:\n\t");
+                for(int i = 0; i < TAM; i++)
+                    inserirInicioListaDupla(&lista_dupla, vetor[i]);
+                imprimirLista(&lista_dupla);
+                free(lista_dupla);
             break;
             default:
                 if(opc == 0) {
