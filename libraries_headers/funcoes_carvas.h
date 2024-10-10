@@ -488,8 +488,150 @@ void bubbleSortPilhaNome(No **topo) {
 }
 void bubbleSortFilaIdade(No **fila) {
 
+    int troca;
+    No *prox;
+    No *aux;
+    No *temp;
+    No *laux = NULL;
+    No *ultimo = NULL;
+    ListasEx f;
+    Pessoa auxP;
+    temp = *fila;
+
+    f.Fila = NULL;
+
+    while (temp) {
+        prox = temp->proximo;
+        temp->proximo = f.Fila;
+        f.Fila = temp;
+        temp = prox;
+    }
+
+    do {
+        troca = 0;
+        aux = f.Fila;
+
+        while(aux && aux->proximo != laux) {
+            if(aux->pessoa.Idade < aux->proximo->pessoa.Idade) {
+                auxP = aux->pessoa;
+                aux->pessoa = aux->proximo->pessoa;
+                aux->proximo->pessoa = auxP;
+                troca = 1;
+            }
+            aux = aux->proximo;
+        }
+        laux = aux;
+
+    }while(troca);
+
+    aux = f.Fila;
+
+    while (f.Fila) {
+        prox = aux->proximo;
+        aux->proximo = NULL;
+        if(ultimo) {
+            ultimo->proximo = aux;
+        }else {
+            *fila = aux;
+        }
+        ultimo = aux;
+        aux = prox;
+    }
+}
+void bubbleSortFilaNome(No **fila){
+int troca;
+No *prox;
+No *aux;
+No *temp;
+No *laux = NULL;
+No *ultimo = NULL;
+ListasEx f;
+Pessoa auxP;
+temp = *fila;
+
+f.Fila = NULL;
+
+while (temp) {
+    prox = temp->proximo;
+    temp->proximo = f.Fila;
+    f.Fila = temp;
+    temp = prox;
 }
 
+do {
+    troca = 0;
+    aux = f.Fila;
+
+    while(aux && aux->proximo != laux) {
+        if(_stricmp(aux->pessoa.Nome,aux->proximo->pessoa.Nome) < 0) {
+            auxP = aux->pessoa;
+            aux->pessoa = aux->proximo->pessoa;
+            aux->proximo->pessoa = auxP;
+            troca = 1;
+        }
+        aux = aux->proximo;
+    }
+    laux = aux;
+
+}while(troca);
+
+aux = f.Fila;
+
+while (f.Fila) {
+    prox = aux->proximo;
+    aux->proximo = NULL;
+    if(ultimo) {
+        ultimo->proximo = aux;
+    }else {
+        *fila = aux;
+    }
+    ultimo = aux;
+    aux = prox;
+}
+}
+void bubbleSortListaIdade(No **lista) {
+    int troca;
+    No *aux;
+    No *laux = NULL;
+    Pessoa temp;
+
+        do {
+            troca = 0;
+            aux = *lista;
+            while(aux->proximo != laux) {
+                if(aux->pessoa.Idade < aux->proximo->pessoa.Idade) {
+                    temp = aux->pessoa;
+                    aux->pessoa = aux->proximo->pessoa;
+                    aux->proximo->pessoa = temp;
+                    troca = 1;
+                }
+                aux = aux->proximo;
+            }
+            laux = aux;
+        }while(troca);
+
+}
+void bubbleSortListaNome(No **lista) {
+
+    int troca;
+    No *aux;
+    No *laux = NULL;
+    Pessoa temp;
+    do {
+        troca = 0;
+        aux = *lista;
+        while(aux->proximo != laux) {
+            if(_stricmp(aux->pessoa.Nome,aux->proximo->pessoa.Nome) < 0) {
+                temp = aux->pessoa;
+                aux->pessoa = aux->proximo->pessoa;
+                aux->proximo->pessoa = temp;
+                troca = 1;
+            }
+            aux = aux->proximo;
+        }
+        laux = aux;
+    }while(troca);
+}
 
 //FUNÇÃO EXTRA! MISTURAR AS LISTAS, PILHAS E FILAS(WIP)
 /*void mesclar_Listas_Nome(ListasEx **Tipolista, No **Novalista) {
