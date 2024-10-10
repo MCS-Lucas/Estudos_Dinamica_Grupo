@@ -22,6 +22,7 @@ void mergeSort(int *v, int indexInicio, int indexFim);
 void chamadaMergeSort(int *v, int indexInicio, int indexFim);
 void insertionSort(int *v, int indexInicio, int indexFim);
 void selectionSort(int *v, int indexInicio, int indexFim);
+NoPilha * empilhar(NoPilha *topo, int valor);
 
 int main(){
 

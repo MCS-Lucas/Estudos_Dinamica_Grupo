@@ -10,6 +10,9 @@ typedef struct{
 
 }Pessoa;
 
-
+typedef struct noPilha{
+    int valor;
+    struct noPilha *proximo;
+}NoPilha;
 #endif
 

@@ -1,6 +1,7 @@
 //Aqui serão declaradas as funções feitas pelo Guilherme Yago
 #ifndef FUNCOES_JUDAS_H
 #define FUNCOES_JUDAS_H
+#include <elementos.h>
 #include <tgmath.h>
 #endif
 #define TAM 10
@@ -214,6 +215,20 @@ inline void selectionSort(int *v, int indexInicio, int indexFim) {
     }
 }
 
+
+inline NoPilha * empilhar(NoPilha *topo, int valor) {
+    NoPilha * aux = malloc(sizeof(NoPilha));
+    if (aux) {
+        aux->valor = valor;
+        aux->proximo = topo; // O Nó que representava o topo agora está sendo apontado pelo último nó inserido.
+        return aux; // Retorna o novo Nó para representar o início da nossa pilha.
+    }
+    else
+        printf("\nErro ao alocar memória.");
+
+
+}
+
 inline void menuFuncoes() {
     int opc;
     int *vetor;
@@ -288,8 +303,16 @@ inline void menuFuncoes() {
             case 9:
                 printf("quickSort()");
             break;
-            case 10:
-                printf("quickSort()");
+            case 10: // Pilha
+                pausarExecucao(1/2);
+                NoPilha *topo = NULL;
+                vetor = preencherArray();
+                printf("\n\tValores da pilha:\n\t");
+                for(int i = 0; i < TAM; i++) {
+                    topo = empilhar(topo, vetor[i]);
+                    printf("%d ", topo->valor);
+                }
+                free(topo);
             break;
             case 11:
                 printf("quickSort()");
