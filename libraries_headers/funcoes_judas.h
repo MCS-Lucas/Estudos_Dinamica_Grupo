@@ -188,12 +188,13 @@ inline void chamadaMergeSort(int *v, int indexInicio, int indexFim) {
 inline void insertionSort(int *v, int indexInicio, int indexFim) {
     int i, j, aux;
     int tamanho = indexFim - indexInicio + 1;
-    for(i = 1; i < tamanho; i++) {
+    for(i = 1; i < tamanho; i++) { // 'i' começa em 1 já que 'j' começará em 0
         aux = v[i]; // 'aux' guarda um valor reserva de 'i'
         j = i - 1; // 'j' guarda a posicão anterior ao i
 
         while(j >= 0 && aux < v[j]) {
-            v[j+1] = v[j]; /* Primeira execução: A posição 1 do vetor recebe o valor armazenado na posição 0.
+            v[j+1] = v[j]; /* Primeira execução: A posição 1 do vetor recebe o valor
+                            * armazenado na posição 0.
                             * Como -1 < 0 == 1, o programa sai do while e v[j+1] = aux.;   */
             j--;
         }
@@ -202,16 +203,14 @@ inline void insertionSort(int *v, int indexInicio, int indexFim) {
     }
 }
 
-inline void selectionSort(int *v, int indexFim, int indexInicio) {
-    int i, j, aux;
+inline void selectionSort(int *v, int indexInicio, int indexFim) {
     int tamanho = indexFim - indexInicio + 1;
-    for (i = 0; i < tamanho-2; i++) {
-        aux = v[i];
-        j = i + 1;
-        if(v[i] < v[j]) {
-
+    for (int i = 0; i < tamanho-1; i++) {
+        for (int j = i + 1; j < tamanho; j++) {
+            if(v[i] > v[j]) {
+                swap(v, i, j);
+            }
         }
-
     }
 }
 
@@ -255,13 +254,13 @@ inline void menuFuncoes() {
                 chamadaQuickSort(vetor, 0, TAM-1);
                 free(vetor);
             break;
-            case 3:
+            case 3: // Merge Sort
                 pausarExecucao(1/2);
                 vetor = preencherArray();
                 chamadaMergeSort(vetor, 0, TAM-1);
                 free(vetor);
             break;
-            case 4:
+            case 4: // Insertion Sort
                 pausarExecucao(1/2);
                 vetor = preencherArray();
                 imprimirArray(vetor, 0);
@@ -269,8 +268,13 @@ inline void menuFuncoes() {
                 imprimirArray(vetor, 1);
                 free(vetor);
             break;
-            case 5:
-
+            case 5: // Selection Sort
+                pausarExecucao(1/2);
+                vetor = preencherArray();
+                imprimirArray(vetor, 0);
+                selectionSort(vetor, 0, TAM-1);
+                imprimirArray(vetor, 1);
+                free(vetor);
             break;
             case 6:
                 printf("quickSort()");

@@ -21,6 +21,8 @@ void merge(int *v, int indexInicio, int meio, int indexFim);
 void mergeSort(int *v, int indexInicio, int indexFim);
 void chamadaMergeSort(int *v, int indexInicio, int indexFim);
 void insertionSort(int *v, int indexInicio, int indexFim);
+void selectionSort(int *v, int indexInicio, int indexFim);
+
 int main(){
 
     setlocale(LC_ALL, "Portuguese");
@@ -67,5 +69,6 @@ int main(){
                 wprintf(L"Opção inválida");
             }
     }while(op != 0);
+
 return 0;
 }
