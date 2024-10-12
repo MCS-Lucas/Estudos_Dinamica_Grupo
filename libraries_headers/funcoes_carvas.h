@@ -12,6 +12,7 @@ typedef struct no {  //Criação da estrutura nó para implementar nas estrutura
     struct no *proximo;
     struct no *anterior;
 }No;
+
 Pessoa cadastrarPessoa() {   //Função para cadastrar
 
     Pessoa p;
@@ -34,7 +35,7 @@ void imprimirPessoa(Pessoa pessoa) {
 
     printf("Nome: %s",pessoa.Nome);
     printf("idade: %d",pessoa.Idade);
-    wprintf(L"\nNome de Usuário: %s",pessoa.Github);
+    wprintf(L"\nNome de Usuário: %hs",pessoa.Github);
     printf("Email: %s",pessoa.Email);
 
 }
@@ -251,9 +252,9 @@ No* remover_da_lista(No **lista) {
         if(aux == NULL){
             wprintf("\nUsuário não encontrado.\n");
         }else {
-            remover = aux;
+            remover = aux;  // remover = *lista
             if(auxAnt == NULL) {
-                *lista = remover->proximo;
+                *lista = remover->proximo; //*lista->proximo
             }else {
                 auxAnt->proximo = remover->proximo;
             }
@@ -339,7 +340,7 @@ void inserir_listaDE_idade(No **lista) {
             novo->anterior = NULL;
             *lista = novo;
         }else {
-            aux = *lista;
+            aux = *lista;       //aux->proximo = (*lista)->proximo  aux->anterior = (*lista)->anterior
             while(aux->proximo && novo->pessoa.Idade > aux->pessoa.Idade) {
                 aux = aux->proximo;
             }
@@ -407,9 +408,9 @@ No* remover_da_listaDE(No **lista) {
         }
         if(aux == NULL){
             wprintf("\nUsuário não encontrado.\n");
-            return NULL;
+
         }else {
-            remover = aux;
+            remover = aux;   // remover->anterio ou remover->proximo = aux->anterior ou aux->proximo
             if(aux->anterior == NULL) {
                 remover->proximo->anterior = NULL;
                 *lista = remover->proximo;
@@ -1049,6 +1050,151 @@ void insertionSortListaNome(No **lista) {
 }
 
 //Metodos de ordenação para as estruturas (QuickSort)
+
+No* concatenar(No *menores, No *pivo, No *maiores) {
+
+    if(menores == NULL) {
+        pivo->proximo = maiores;
+        return pivo;
+    }
+    No *atual = menores;
+
+    while(atual->proximo) {
+        atual = atual->proximo;
+    }
+    atual->proximo = pivo;
+    pivo->proximo = maiores;
+    return menores;
+}
+No* particionaIdade(No *topo,No **menores,No **maiores) {
+
+    No *pivo = topo;
+    topo = topo->proximo;
+    pivo->proximo = NULL;
+
+    while(topo) {
+        No *aux = topo->proximo;
+        if(topo->pessoa.Idade < pivo->pessoa.Idade) {
+            topo->proximo = *menores;
+            *menores = topo;
+        }else {
+            topo->proximo = *maiores;
+            *maiores = topo;
+        }
+        topo = aux;
+    }
+    return pivo;
+}
+No* particionaNome(No *topo,No **menores,No **maiores) {
+
+    No *pivo = topo;
+    topo = topo->proximo;
+    pivo->proximo = NULL;
+
+    while(topo) {
+        No *aux = topo->proximo;
+        if(_stricmp(topo->pessoa.Nome, pivo->pessoa.Nome) < 0) {
+            topo->proximo = *menores;
+            *menores = topo;
+        }else {
+            topo->proximo = *maiores;
+            *maiores = topo;
+        }
+        topo = aux;
+    }
+    return pivo;
+}
+No* quickSortPilhaIdade(No **topo) {
+
+    if(*topo == NULL || (*topo)->proximo == NULL) {
+        return *topo;
+    }
+    No *menores = NULL;
+    No *maiores = NULL;
+    No *pivo = particionaIdade(*topo,&menores,&maiores);
+
+    menores = quickSortPilhaIdade(&menores);
+    maiores = quickSortPilhaIdade(&maiores);
+
+    return concatenar(menores, pivo, maiores);
+
+}
+No* quickSortPilhaNome(No **topo) {
+
+    if(*topo == NULL || (*topo)->proximo == NULL) {
+        return *topo;
+    }
+    No *menores = NULL;
+    No *maiores = NULL;
+    No *pivo = particionaNome(*topo,&menores,&maiores);
+
+    menores = quickSortPilhaNome(&menores);
+    maiores = quickSortPilhaNome(&maiores);
+
+    return concatenar(menores, pivo, maiores);
+
+}
+No* quickSortFilaIdade(No **fila) {
+
+    if(*fila == NULL || (*fila)->proximo == NULL) {
+        return *fila;
+    }
+    No *menores = NULL;
+    No *maiores = NULL;
+    No *pivo = particionaIdade(*fila,&menores,&maiores);
+
+    menores = quickSortPilhaIdade(&menores);
+    maiores = quickSortPilhaIdade(&maiores);
+
+    return concatenar(menores, pivo, maiores);
+
+}
+No* quickSortFilaNome(No **fila) {
+
+    if(*fila == NULL || (*fila)->proximo == NULL) {
+        return *fila;
+    }
+    No *menores = NULL;
+    No *maiores = NULL;
+    No *pivo = particionaNome(*fila,&menores,&maiores);
+
+    menores = quickSortPilhaNome(&menores);
+    maiores = quickSortPilhaNome(&maiores);
+
+    return concatenar(menores, pivo, maiores);
+
+}
+No* quickSortListaIdade(No **lista) {
+
+    if(*lista == NULL || (*lista)->proximo == NULL) {
+        return *lista;
+    }
+    No *menores = NULL;
+    No *maiores = NULL;
+    No *pivo = particionaIdade(*lista,&menores,&maiores);
+
+    menores = quickSortListaIdade(&menores);
+    maiores = quickSortListaIdade(&maiores);
+
+    return concatenar(menores, pivo, maiores);
+
+}
+No* quickSortListaNome(No **lista) {
+
+    if(*lista == NULL || (*lista)->proximo == NULL) {
+        return *lista;
+    }
+    No *menores = NULL;
+    No *maiores = NULL;
+    No *pivo = particionaNome(*lista,&menores,&maiores);
+
+    menores = quickSortListaNome(&menores);
+    maiores = quickSortListaNome(&maiores);
+
+    return concatenar(menores, pivo, maiores);
+
+}
+
 //Metodos de ordenação para as estruturas (MergeSort)
 
 //FUNÇÃO EXTRA! MISTURAR AS LISTAS, PILHAS E FILAS(WIP)
@@ -1290,7 +1436,7 @@ void fila_exe(){
 }
 void pilha_exe() {
     int opPilha;
-    No *remover, *topo = NULL;
+    No *remover, *topo = NULL, *ordenar = NULL;
     // ListasEx *Pilha;
 
     do {
@@ -1330,7 +1476,7 @@ void pilha_exe() {
             break;
 
             case 4:
-                insertionSortPilhaNome(&topo);
+                ordenar = quickSortPilhaIdade(&topo);
                 imprimir_pilha(topo);
                 break;
 
