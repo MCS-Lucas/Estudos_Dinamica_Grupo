@@ -215,8 +215,8 @@ inline NoPilha * empilhar(NoPilha *topo, int valor) {
         novo->proximo = topo; // O Nó que representava o topo agora está sendo apontado pelo último nó inserido.
         return novo; // Retorna o novo Nó para representar o início da nossa pilha.
     }
-    else
-        printf("\nErro ao alocar memória.");
+    printf("\nErro ao alocar memória.");
+    return NULL;
 }
 
 inline void inserirFila(NoFila **fila, int num) {
@@ -542,7 +542,7 @@ inline void menuFuncoes() {
             break;
             default:
                 if(opc == 0) {
-                    printf("Encerrando Programa...");
+                    printf("\n\tEncerrando Programa...\n");
                     break;
                 }
                 wprintf(L"\n\tOpção inválida.");
