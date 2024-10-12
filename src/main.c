@@ -22,7 +22,6 @@ void mergeSort(int *v, int indexInicio, int indexFim);
 void chamadaMergeSort(int *v, int indexInicio, int indexFim);
 void insertionSort(int *v, int indexInicio, int indexFim);
 void selectionSort(int *v, int indexInicio, int indexFim);
-<<<<<<< HEAD
 NoPilha * empilhar(NoPilha *topo, int valor);
 void inserirFila(NoFila **fila, int num);
 void imprimirFila(NoFila **fila);
@@ -30,15 +29,11 @@ void inserirFimLista(NoLista **lista, int valor);
 void imprimirLista(NoLista **lista);
 void inserirInicioListaDupla(NoListaDupla **lista_dupla, int valor);
 void imprimirListaDupla(NoListaDupla **lista_dupla);
-
-
-=======
 NoArv* inserirNaArvoreBinaria(NoArv *raiz, int num);
 void imprimirArvoreBinaria_ordem(NoArv *raiz);
 void imprimirArvoreBinaria_preOrdem(NoArv *raiz);
 void imprimirArvoreBinaria_posOrdem(NoArv *raiz);
 NoArv* buscaBinariaRecursiva(NoArv *raiz, int num);
->>>>>>> arvore-binaria
 
 
 int main(){

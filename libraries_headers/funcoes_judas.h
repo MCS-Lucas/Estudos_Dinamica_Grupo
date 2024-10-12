@@ -2,8 +2,6 @@
 #ifndef FUNCOES_JUDAS_H
 #define FUNCOES_JUDAS_H
 #include <elementos.h>
-#include <elementos.h>
-#include <elementos.h>
 #include <tgmath.h>
 #endif
 #define TAM 10
@@ -39,13 +37,7 @@ inline void swap(int *vetor, int indexN1, int indexN2) { // Função que troca d
         vetor[indexN2] = aux; // o valor do indexN2 recebe auxiliar
     }
 }
-<<<<<<< HEAD
 
-
-
-
-=======
->>>>>>> arvore-binaria
 inline int * preencherArray() { // Função que retorna o endereço de um array preenchido
     int i, input;
     int * numeros = calloc(TAM, sizeof(int)); /* 'calloc' aloca memória de acordo com o tamanho passado e
@@ -216,8 +208,6 @@ inline void selectionSort(int *v, int indexInicio, int indexFim) {
     }
 }
 
-<<<<<<< HEAD
-
 inline NoPilha * empilhar(NoPilha *topo, int valor) {
     NoPilha * novo = malloc(sizeof(NoPilha));
     if (novo) {
@@ -319,8 +309,6 @@ inline void imprimirListaDupla(NoListaDupla **lista_dupla) {
         printf("\n\tA lista-duplamente-encadeada está vazia.");
 }
 
-
-=======
 inline NoArv* inserirNaArvoreBinaria(NoArv *raiz, int num)  {
     if (raiz == NULL)   {
         NoArv *aux = malloc(sizeof(NoArv));
@@ -369,12 +357,13 @@ inline NoArv* buscaBinariaRecursiva(NoArv *raiz, int num) {
         else
             return raiz;
     }
+    wprintf(L"\n\tValor não encontrado.");
     return NULL;
 }
 
 
 // Menu de operações:
->>>>>>> arvore-binaria
+
 inline void menuFuncoes() {
     int opc;
     int *vetor;
