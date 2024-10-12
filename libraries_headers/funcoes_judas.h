@@ -10,7 +10,7 @@
 #include <unistd.h>
 #endif
 
-
+// Comandos de terminal:
 inline void limparTela() {
     #ifdef __linux__
         system("clear");
@@ -20,7 +20,6 @@ inline void limparTela() {
 
     #endif
 }
-
 inline void pausarExecucao(int segundos) {
     #ifdef _WIN32 // Caso WIN
         Sleep(segundos * 1000); // Função converte milisegundos -> segundos
@@ -29,6 +28,7 @@ inline void pausarExecucao(int segundos) {
     #endif
 }
 
+//  Funções auxiliares:
 inline void swap(int *vetor, int indexN1, int indexN2) { // Função que troca dois elementos de um vetor
     if (vetor != NULL) {
         int aux = vetor[indexN1]; // aux recebe o valor apontado por indexN1
@@ -36,7 +36,6 @@ inline void swap(int *vetor, int indexN1, int indexN2) { // Função que troca d
         vetor[indexN2] = aux; // o valor do indexN2 recebe auxiliar
     }
 }
-
 inline int * preencherArray() { // Função que retorna o endereço de um array preenchido
     int i, input;
     int * numeros = calloc(TAM, sizeof(int)); /* 'calloc' aloca memória de acordo com o tamanho passado e
@@ -52,7 +51,6 @@ inline int * preencherArray() { // Função que retorna o endereço de um array 
     }
     return numeros;
 }
-
 inline void imprimirArray(int *v, int opcao) {
     char string[50];
     if (opcao == 1) {
@@ -67,6 +65,7 @@ inline void imprimirArray(int *v, int opcao) {
     }
 }
 
+// Métodos de ordenação:
 inline void bubbleSort(int *v) {
     int *numeros;
     int i, aux;
@@ -104,8 +103,6 @@ inline int particionamento(int *v, int inicio, int fim) {
     }
     return inicio;
 }
-
-
 inline void quickSort(int *v, int inicio, int fim) {
     if(inicio < fim) {
         int pos = particionamento(v, inicio, fim); // 'pos' recebe o índice do elemento correto que está no meio
@@ -113,7 +110,6 @@ inline void quickSort(int *v, int inicio, int fim) {
         quickSort(v, pos, fim); // Chama 'quickSort' de forma recursiva para ordernar n >= elemento central
     }
 }
-
 inline void chamadaQuickSort(int *v, int inicio, int fim) {
     int *numeros = v;
     imprimirArray(numeros, 0);
@@ -167,7 +163,6 @@ inline void merge(int *v, int indexInicio, int meio, int indexFim) {
         free(temp);
     }
 }
-
 inline void mergeSort(int *v, int indexInicio, int indexFim) {
     int meio;
     if (indexInicio < indexFim) {
@@ -177,13 +172,11 @@ inline void mergeSort(int *v, int indexInicio, int indexFim) {
         merge(v, indexInicio, meio, indexFim); // Mergeando metades ordenadas
     }
 }
-
 inline void chamadaMergeSort(int *v, int indexInicio, int indexFim) {
     imprimirArray(v, 0);
     mergeSort(v, indexInicio, indexFim);
     imprimirArray(v, 1);
 }
-
 
 inline void insertionSort(int *v, int indexInicio, int indexFim) {
     int i, j, aux;
@@ -202,7 +195,6 @@ inline void insertionSort(int *v, int indexInicio, int indexFim) {
         v[j+1] = aux;
     }
 }
-
 inline void selectionSort(int *v, int indexInicio, int indexFim) {
     int tamanho = indexFim - indexInicio + 1;
     for (int i = 0; i < tamanho-1; i++) {
@@ -230,9 +222,33 @@ inline NoArv* inserirNaArvoreBinaria(NoArv *raiz, int num)  {
         return raiz;
     }
 }
+inline void imprimirArvoreBinaria_ordem(NoArv *raiz) {
+    if(raiz) {
+        imprimirArvoreBinaria_ordem(raiz->esquerda);
+        printf("%d ", raiz->valor);
+        imprimirArvoreBinaria_ordem(raiz->direita);
+    }
+}
+inline void imprimirArvoreBinaria_preOrdem(NoArv *raiz) {
+    if (raiz) {
+        printf("%d ", raiz->valor);
+        imprimirArvoreBinaria_preOrdem(raiz->esquerda);
+        imprimirArvoreBinaria_preOrdem(raiz->direita);
+    }
+}
+inline void imprimirArvoreBinaria_posOrdem(NoArv *raiz) {
+    if (raiz) {
+        imprimirArvoreBinaria_posOrdem(raiz->esquerda);
+        imprimirArvoreBinaria_posOrdem(raiz->direita);
+        printf("%d ", raiz->valor);
+    }
+}
+
+// Métodos de busca:
 
 
 
+// Menu de operações:
 inline void menuFuncoes() {
     int opc;
     int *vetor;
@@ -299,10 +315,16 @@ inline void menuFuncoes() {
             case 6: // Árvore de Busca Binária
                 pausarExecucao(1/2);
                 vetor = preencherArray();
-                for (int i = 0; i < TAM; i++) {
-                    inserirNaArvoreBinaria(raiz, vetor[i]);
-                }
+                for (int i = 0; i < TAM; i++)
+                    raiz = inserirNaArvoreBinaria(raiz, vetor[i]);
 
+                wprintf(L"\n\tElementos da árvore em ordem:\n\t");
+                imprimirArvoreBinaria_ordem(raiz);
+                wprintf(L"\n\tElementos da árvore em  pré-ordem:\n\t");
+                imprimirArvoreBinaria_preOrdem(raiz);
+                wprintf(L"\n\tElementos da árvore em  pos-ordem:\n\t");
+                imprimirArvoreBinaria_posOrdem(raiz);
+                free(vetor);
             break;
             case 7:
                 printf("quickSort()");
@@ -333,7 +355,6 @@ inline void menuFuncoes() {
                 wprintf(L"\n\tOpção inválida.");
             }
     } while (opc != 0);
-
 }
 
 

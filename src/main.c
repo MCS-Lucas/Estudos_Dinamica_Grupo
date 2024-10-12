@@ -23,8 +23,9 @@ void chamadaMergeSort(int *v, int indexInicio, int indexFim);
 void insertionSort(int *v, int indexInicio, int indexFim);
 void selectionSort(int *v, int indexInicio, int indexFim);
 NoArv* inserirNaArvoreBinaria(NoArv *raiz, int num);
-
-
+void imprimirArvoreBinaria_ordem(NoArv *raiz);
+void imprimirArvoreBinaria_preOrdem(NoArv *raiz);
+void imprimirArvoreBinaria_posOrdem(NoArv *raiz);
 
 
 int main(){
