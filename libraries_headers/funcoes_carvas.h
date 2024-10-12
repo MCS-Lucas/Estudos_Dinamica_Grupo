@@ -133,7 +133,7 @@ No* desenfileirar_dequeue(No **fila) {  //Aqui retornamos um ponteiro, ao contra
     return remover;                     //Caso não seja nulo a função irá retornar o endereço do nó que foi removido, caso seja nulo irá apenas o endereço de remover mas que terá seu conteudo nulo, ou seja, não terá nada.
 }
 void imprimir_fila(No *fila) {
-    printf("\n-------------Inseridos na Pilha-----------\n");
+    printf("\n-------------Inseridos na Fila-----------\n");
     while(fila) { // serve funciona verificando se o ponteiro fila ainda está apontando para algum endereço, se não houver nenhum endereço sendo apontado então fila == NULL e a condição de parada do While é atendida
         imprimirPessoa(fila->pessoa);  //imprime de cima para baixo começando no topo da pilha
         printf("-------------------------------------------\n");
@@ -652,7 +652,7 @@ void selectionSortPilhaIdade(No **topo) {
     for(i = pilha.Pilha; i ; i = i->proximo) {
         menor = i;
         for(j = i->proximo; j ; j = j->proximo) {
-            if(j->pessoa.Idade < menor->pessoa.Idade) {
+            if(j->pessoa.Idade > menor->pessoa.Idade) {
                 menor = j;
             }
         }
@@ -686,7 +686,7 @@ void selectionSortPilhaNome(No **topo) {
     for(i = pilha.Pilha; i ; i = i->proximo) {
         menor = i;
         for(j = i->proximo; j ; j = j->proximo) {
-            if(_stricmp(j->pessoa.Nome, menor->pessoa.Nome) < 0) {
+            if(_stricmp(j->pessoa.Nome, menor->pessoa.Nome) > 0) {
                 menor = j;
             }
         }
@@ -721,7 +721,7 @@ void selectionSortFilaIdade(No **fila) {
     for(i = f.Fila; i ; i = i->proximo) {
         menor = i;
         for(j = i->proximo; j ; j = j->proximo) {
-            if(j->pessoa.Idade < menor->pessoa.Idade) {
+            if(j->pessoa.Idade > menor->pessoa.Idade) {
                 menor = j;
             }
         }
@@ -762,7 +762,7 @@ void selectionSortFilaNome(No **fila) {
     for(i = f.Fila; i ; i = i->proximo) {
         menor = i;
         for(j = i->proximo; j ; j = j->proximo) {
-            if(_stricmp(j->pessoa.Nome, menor->pessoa.Nome) < 0) {
+            if(_stricmp(j->pessoa.Nome, menor->pessoa.Nome) > 0) {
                 menor = j;
             }
         }
@@ -805,7 +805,7 @@ void selectionSortListaIdade(No **lista) {
     for(i = l.Lista; i ; i = i->proximo) {
         menor = i;
         for(j = i->proximo; j ; j = j->proximo) {
-            if(j->pessoa.Idade < menor->pessoa.Idade) {
+            if(j->pessoa.Idade > menor->pessoa.Idade) {
                 menor = j;
             }
         }
@@ -839,7 +839,7 @@ void selectionSortListaNome(No **lista) {
     for(i = l.Lista; i ; i = i->proximo) {
         menor = i;
         for(j = i->proximo; j ; j = j->proximo) {
-            if(_stricmp(j->pessoa.Nome, menor->pessoa.Nome) < 0) {
+            if(_stricmp(j->pessoa.Nome, menor->pessoa.Nome) > 0) {
                 menor = j;
             }
         }
@@ -1066,103 +1066,43 @@ No* concatenar(No *menores, No *pivo, No *maiores) {
     pivo->proximo = maiores;
     return menores;
 }
-No* particionaIdade(No *topo,No **menores,No **maiores) {
+No* particionaIdade(No *lista,No **menores,No **maiores) {
 
-    No *pivo = topo;
-    topo = topo->proximo;
+    No *pivo = lista;
+    lista = lista->proximo;
     pivo->proximo = NULL;
 
-    while(topo) {
-        No *aux = topo->proximo;
-        if(topo->pessoa.Idade < pivo->pessoa.Idade) {
-            topo->proximo = *menores;
-            *menores = topo;
+    while(lista) {
+        No *aux = lista->proximo;
+        if(lista->pessoa.Idade < pivo->pessoa.Idade) {
+            lista->proximo = *menores;
+            *menores = lista;
         }else {
-            topo->proximo = *maiores;
-            *maiores = topo;
+            lista->proximo = *maiores;
+            *maiores = lista;
         }
-        topo = aux;
+        lista = aux;
     }
     return pivo;
 }
-No* particionaNome(No *topo,No **menores,No **maiores) {
+No* particionaNome(No *lista,No **menores,No **maiores) {
 
-    No *pivo = topo;
-    topo = topo->proximo;
+    No *pivo = lista;
+    lista = lista->proximo;
     pivo->proximo = NULL;
 
-    while(topo) {
-        No *aux = topo->proximo;
-        if(_stricmp(topo->pessoa.Nome, pivo->pessoa.Nome) < 0) {
-            topo->proximo = *menores;
-            *menores = topo;
+    while(lista) {
+        No *aux = lista->proximo;
+        if(_stricmp(lista->pessoa.Nome, pivo->pessoa.Nome) < 0) {
+            lista->proximo = *menores;
+            *menores = lista;
         }else {
-            topo->proximo = *maiores;
-            *maiores = topo;
+            lista->proximo = *maiores;
+            *maiores = lista;
         }
-        topo = aux;
+        lista = aux;
     }
     return pivo;
-}
-No* quickSortPilhaIdade(No **topo) {
-
-    if(*topo == NULL || (*topo)->proximo == NULL) {
-        return *topo;
-    }
-    No *menores = NULL;
-    No *maiores = NULL;
-    No *pivo = particionaIdade(*topo,&menores,&maiores);
-
-    menores = quickSortPilhaIdade(&menores);
-    maiores = quickSortPilhaIdade(&maiores);
-
-    return concatenar(menores, pivo, maiores);
-
-}
-No* quickSortPilhaNome(No **topo) {
-
-    if(*topo == NULL || (*topo)->proximo == NULL) {
-        return *topo;
-    }
-    No *menores = NULL;
-    No *maiores = NULL;
-    No *pivo = particionaNome(*topo,&menores,&maiores);
-
-    menores = quickSortPilhaNome(&menores);
-    maiores = quickSortPilhaNome(&maiores);
-
-    return concatenar(menores, pivo, maiores);
-
-}
-No* quickSortFilaIdade(No **fila) {
-
-    if(*fila == NULL || (*fila)->proximo == NULL) {
-        return *fila;
-    }
-    No *menores = NULL;
-    No *maiores = NULL;
-    No *pivo = particionaIdade(*fila,&menores,&maiores);
-
-    menores = quickSortPilhaIdade(&menores);
-    maiores = quickSortPilhaIdade(&maiores);
-
-    return concatenar(menores, pivo, maiores);
-
-}
-No* quickSortFilaNome(No **fila) {
-
-    if(*fila == NULL || (*fila)->proximo == NULL) {
-        return *fila;
-    }
-    No *menores = NULL;
-    No *maiores = NULL;
-    No *pivo = particionaNome(*fila,&menores,&maiores);
-
-    menores = quickSortPilhaNome(&menores);
-    maiores = quickSortPilhaNome(&maiores);
-
-    return concatenar(menores, pivo, maiores);
-
 }
 No* quickSortListaIdade(No **lista) {
 
@@ -1195,7 +1135,334 @@ No* quickSortListaNome(No **lista) {
 
 }
 
+//Metodo de ordenação quickSort para Lista Duplamente Encadadeada
+
+No* concatenarDE(No *menores, No *pivo, No *maiores) {
+
+    if(menores == NULL) {
+        pivo->proximo = maiores;
+        if(maiores != NULL) {
+            maiores->anterior = pivo;
+        }
+        return pivo;
+    }
+
+    No *atual = menores;
+    while(atual->proximo) {
+        atual = atual->proximo;
+    }
+
+    atual->proximo = pivo;
+    pivo->anterior = atual;
+    pivo->proximo = maiores;
+
+    if(maiores != NULL) {
+        maiores->anterior = pivo;
+    }
+
+    return menores;
+}
+No* particionaIdadeDE(No *lista, No **menores, No **maiores) {
+
+    No *pivo = lista;
+    lista = lista->proximo;
+    pivo->proximo = NULL;
+    pivo->anterior = NULL;
+
+    while(lista) {
+        No *aux = lista->proximo;
+        lista->anterior = NULL;
+        lista->proximo = NULL;
+
+        if(lista->pessoa.Idade < pivo->pessoa.Idade) {
+            lista->proximo = *menores;
+            if(*menores != NULL) {
+                (*menores)->anterior = lista;
+            }
+            *menores = lista;
+        } else {
+            lista->proximo = *maiores;
+            if(*maiores != NULL) {
+                (*maiores)->anterior = lista;
+            }
+            *maiores = lista;
+        }
+
+        lista = aux;
+    }
+    return pivo;
+}
+No* particionaNomeDE(No *lista, No **menores, No **maiores) {
+
+    No *pivo = lista;
+    lista = lista->proximo;
+    pivo->proximo = NULL;
+    pivo->anterior = NULL;
+
+    while(lista) {
+        No *aux = lista->proximo;
+        lista->anterior = NULL;
+        lista->proximo = NULL;
+
+        if(_stricmp(lista->pessoa.Nome, pivo->pessoa.Nome) < 0) {
+            lista->proximo = *menores;
+            if(*menores != NULL) {
+                (*menores)->anterior = lista;
+            }
+            *menores = lista;
+        } else {
+            lista->proximo = *maiores;
+            if(*maiores != NULL) {
+                (*maiores)->anterior = lista;
+            }
+            *maiores = lista;
+        }
+
+        lista = aux;
+    }
+    return pivo;
+}
+No* quickSortListaIdadeDE(No **lista) {
+
+    if(*lista == NULL || (*lista)->proximo == NULL) {
+        return *lista;
+    }
+
+    No *menores = NULL;
+    No *maiores = NULL;
+    No *pivo = particionaIdadeDE(*lista, &menores, &maiores);
+
+
+    menores = quickSortListaIdadeDE(&menores);
+    maiores = quickSortListaIdadeDE(&maiores);
+
+
+    return concatenar(menores, pivo, maiores);
+}
+No* quickSortListaNomeDE(No **lista) {
+
+    if(*lista == NULL || (*lista)->proximo == NULL) {
+        return *lista; // Caso base: lista vazia ou com um único elemento
+    }
+
+    No *menores = NULL;
+    No *maiores = NULL;
+    No *pivo = particionaIdade(*lista, &menores, &maiores);
+
+    menores = quickSortListaNomeDE(&menores);
+    maiores = quickSortListaNomeDE(&maiores);
+
+    return concatenar(menores, pivo, maiores);
+}
+
 //Metodos de ordenação para as estruturas (MergeSort)
+
+void dividir(No *lista,No **metadeUm,No **metadeDois) {
+
+    No *rapido, *lento;
+
+    lento = lista;
+    rapido = lista->proximo;
+
+    while(rapido) {
+        rapido = rapido->proximo;
+        if(rapido) {
+            lento = lento->proximo;
+            rapido = rapido->proximo;
+        }
+    }
+
+    *metadeUm = lista;
+    *metadeDois = lento->proximo;
+    lento->proximo = NULL;
+}
+No* fundirIdades(No *l1, No *l2) {
+
+    No *listaCompleta = NULL;
+
+    if(l1 == NULL) {
+        return l2;
+    }
+    if(l2 == NULL) {
+        return l1;
+    }
+
+    if(l1->pessoa.Idade <= l2->pessoa.Idade) {
+        listaCompleta = l1;
+        listaCompleta->proximo = fundirIdades(l1->proximo, l2);
+    }else {
+        listaCompleta = l2;
+        listaCompleta->proximo = fundirIdades(l1, l2->proximo);
+    }
+
+    return listaCompleta;
+}
+No* fundirNomes(No *l1, No *l2) {
+
+    No *listaCompleta = NULL;
+
+    if(l1 == NULL) {
+        return l2;
+    }
+    if(l2 == NULL) {
+        return l1;
+    }
+
+    if(_stricmp(l1->pessoa.Nome, l2->pessoa.Nome) <= 0) {
+        listaCompleta = l1;
+        listaCompleta->proximo = fundirNomes(l1->proximo, l2);
+    }else {
+        listaCompleta = l2;
+        listaCompleta->proximo = fundirNomes(l1, l2->proximo);
+    }
+
+    return listaCompleta;
+}
+No* mergeSortIdade(No *lista) {
+
+    if(lista == NULL || lista->proximo == NULL) {
+        return lista;
+    }
+
+    No *metadeUm;
+    No *metadeDois;
+
+    dividir(lista,&metadeUm,&metadeDois);
+
+    metadeUm = mergeSortIdade(metadeUm);
+    metadeDois = mergeSortIdade(metadeDois);
+
+    return fundirIdades(metadeUm,metadeDois);
+}
+No* mergeSortNome(No *lista) {
+
+    if(lista == NULL || lista->proximo == NULL) {
+        return lista;
+    }
+
+    No *metadeUm;
+    No *metadeDois;
+
+    dividir(lista,&metadeUm,&metadeDois);
+
+    metadeUm = mergeSortNome(metadeUm);
+    metadeDois = mergeSortNome(metadeDois);
+
+    return fundirNomes(metadeUm,metadeDois);
+}
+
+//Metodo de ordenação mergeSort para Lista Duplamente Encadeada
+
+void dividirDE(No *lista, No **metadeUm, No **metadeDois) {
+    No *rapido, *lento;
+
+    lento = lista;
+    rapido = lista->proximo;
+
+    while(rapido) {
+        rapido = rapido->proximo;
+        if(rapido) {
+            lento = lento->proximo;
+            rapido = rapido->proximo;
+        }
+    }
+
+    *metadeUm = lista;
+    *metadeDois = lento->proximo;
+
+    lento->proximo = NULL;
+
+    if (*metadeDois != NULL) {
+        (*metadeDois)->anterior = NULL;
+    }
+}
+No* fundirIdadesDE(No *l1, No *l2) {
+    No *listaCompleta = NULL;
+
+    if(l1 == NULL) {
+        return l2;
+    }
+    if(l2 == NULL) {
+        return l1;
+    }
+
+    if(l1->pessoa.Idade <= l2->pessoa.Idade) {
+        listaCompleta = l1;
+        listaCompleta->proximo = fundirIdadesDE(l1->proximo, l2);
+        if(listaCompleta->proximo != NULL) {
+            listaCompleta->proximo->anterior = listaCompleta;
+        }
+    } else {
+        listaCompleta = l2;
+        listaCompleta->proximo = fundirIdadesDE(l1, l2->proximo);
+        if(listaCompleta->proximo != NULL) {
+            listaCompleta->proximo->anterior = listaCompleta;
+        }
+    }
+
+    return listaCompleta;
+}
+No* fundirNomesDE(No *l1, No *l2) {
+    No *listaCompleta = NULL;
+
+    if(l1 == NULL) {
+        return l2;
+    }
+    if(l2 == NULL) {
+        return l1;
+    }
+
+    if(_stricmp(l1->pessoa.Nome, l2->pessoa.Nome) <= 0) {
+        listaCompleta = l1;
+        listaCompleta->proximo = fundirNomesDE(l1->proximo, l2);
+        if(listaCompleta->proximo != NULL) {
+            listaCompleta->proximo->anterior = listaCompleta;
+        }
+    } else {
+        listaCompleta = l2;
+        listaCompleta->proximo = fundirNomesDE(l1, l2->proximo);
+        if(listaCompleta->proximo != NULL) {
+            listaCompleta->proximo->anterior = listaCompleta;
+        }
+    }
+
+    return listaCompleta;
+}
+No* mergeSortIdadeDE(No *lista) {
+    if(lista == NULL || lista->proximo == NULL) {
+        return lista;
+    }
+
+    No *metadeUm;
+    No *metadeDois;
+
+
+    dividirDE(lista, &metadeUm, &metadeDois);
+
+
+    metadeUm = mergeSortIdadeDE(metadeUm);
+    metadeDois = mergeSortIdadeDE(metadeDois);
+
+    return fundirIdadesDE(metadeUm, metadeDois);
+}
+No* mergeSortNomeDE(No *lista) {
+    if(lista == NULL || lista->proximo == NULL) {
+        return lista;
+    }
+
+    No *metadeUm;
+    No *metadeDois;
+
+
+    dividirDE(lista, &metadeUm, &metadeDois);
+
+    // Ordena recursivamente as duas metades
+    metadeUm = mergeSortNomeDE(metadeUm);
+    metadeDois = mergeSortNomeDE(metadeDois);
+
+    // Funde as duas metades
+    return fundirNomesDE(metadeUm, metadeDois);
+}
 
 //FUNÇÃO EXTRA! MISTURAR AS LISTAS, PILHAS E FILAS(WIP)
 /*void mesclar_Listas_Nome(ListasEx **Tipolista, No **Novalista) {
@@ -1222,21 +1489,260 @@ No* quickSortListaNome(No **lista) {
     }
 }
 */
+
 //MENUS
-void listaDE_exe() {
+void menuOrdenação(No **lista, int *opUniversal) {
+
+    int opOrdenar;
+
+    do {
+        wprintf(L"===== MENU DE ORDENAÇÃO =====\n");
+        printf("1. Ordenar por BubbleSort (Idade)\n");
+        printf("2. Ordenar por BubbleSort (Nome)\n");
+        printf("3. Ordenar por InsertioSort (Idade)\n");
+        printf("4. Ordenar por InsertioSort (Nome)\n");
+        printf("5. Ordenar por SelectionSort (Idade)\n");
+        printf("6. Ordenar por SelectionSort (Nome)\n");
+        printf("7. Ordenar por QuickSort (Idade)\n");
+        printf("8. Ordenar por QuickSort (Nome)\n");
+        printf("9. Ordenar por MergeSort (Idade)\n");
+        printf("10. Ordenar por MergeSort (Nome)\n");
+        printf("0. Sair\n");
+        printf("==========================\n");
+        wprintf(L"Qual função deseja escolher: ");
+        scanf("%d",&opOrdenar);
+
+        switch(opOrdenar){
+
+            case 1:
+                if(*opUniversal == 1) {
+                    bubbleSortPilhaIdade(lista);
+                    imprimir_pilha(*lista);
+                    break;
+                }
+                if(*opUniversal == 2) {
+                    bubbleSortFilaIdade(lista);
+                    imprimir_fila(*lista);
+                    break;
+                }
+                if(*opUniversal == 3 || *opUniversal == 4) {
+                    bubbleSortFilaIdade(lista);
+                    imprimir_lista(*lista);
+                    break;
+                }
+                break;
+
+            case 2:
+                if(*opUniversal == 1) {
+                    bubbleSortPilhaNome(lista);
+                    imprimir_pilha(*lista);
+                    break;
+                }
+                if(*opUniversal == 2) {
+                    bubbleSortFilaNome(lista);
+                    imprimir_pilha(*lista);
+                    break;
+                }
+                if(*opUniversal == 3 || *opUniversal == 4) {
+                    bubbleSortListaNome(lista);
+                    imprimir_pilha(*lista);
+                    break;
+                }
+                break;
+
+            case 3:
+                if(*opUniversal == 1) {
+                    insertionSortPilhaIdade(lista);
+                    imprimir_pilha(*lista);
+                    break;
+                }
+                if(*opUniversal == 2) {
+                    insertionSortFilaIdade(lista);
+                    imprimir_fila(*lista);
+                    break;
+                }
+                if(*opUniversal == 3 || *opUniversal == 4) {
+                    insertionSortListaIdade(lista);
+                    imprimir_lista(*lista);
+                    break;
+                }
+                break;
+
+            case 4:
+                if(*opUniversal == 1) {
+                    insertionSortPilhaNome(lista);
+                    imprimir_pilha(*lista);
+                    break;
+                }
+                if(*opUniversal == 2) {
+                    insertionSortFilaNome(lista);
+                    imprimir_fila(*lista);
+                    break;
+                }
+                if(*opUniversal == 3 || *opUniversal == 4) {
+                    insertionSortListaNome(lista);
+                    imprimir_lista(*lista);
+                    break;
+                }
+                break;
+
+            case 5:
+                if(*opUniversal == 1) {
+                    selectionSortPilhaIdade(lista);
+                    imprimir_pilha(*lista);
+                    break;
+                }
+                if(*opUniversal == 2) {
+                    selectionSortFilaIdade(lista);
+                    imprimir_fila(*lista);
+                    break;
+                }
+                if(*opUniversal == 3 || *opUniversal == 4) {
+                    selectionSortListaIdade(lista);
+                    imprimir_lista(*lista);
+                    break;
+                }
+
+                break;
+
+            case 6:
+                if(*opUniversal == 1) {
+                    selectionSortPilhaNome(lista);
+                    imprimir_pilha(*lista);
+                    break;
+                }
+                if(*opUniversal == 2) {
+                    selectionSortFilaNome(lista);
+                    imprimir_fila(*lista);
+                    break;
+                }
+                if(*opUniversal == 3 || *opUniversal == 4) {
+                    selectionSortListaNome(lista);
+                    imprimir_lista(*lista);
+                    break;
+                }
+
+                break;
+
+            case 7:
+                if(*opUniversal == 1) {
+                    *lista = quickSortListaIdade(lista);
+                    imprimir_pilha(*lista);
+                    break;
+                }
+                if(*opUniversal == 2) {
+                    *lista = quickSortListaIdade(lista);
+                    imprimir_fila(*lista);
+                    break;
+                }
+                if(*opUniversal == 3) {
+                    *lista = quickSortListaIdade(lista);
+                    imprimir_lista(*lista);
+                    break;
+                }
+                if(*opUniversal == 4) {
+                    *lista = quickSortListaIdadeDE(lista);
+                    imprimir_lista(*lista);
+                    break;
+                }
+
+                break;
+
+            case 8:
+                if(*opUniversal == 1) {
+                    *lista = quickSortListaNome(lista);
+                    imprimir_pilha(*lista);
+                    break;
+                }
+                if(*opUniversal == 2) {
+                    *lista = quickSortListaNome(lista);
+                    imprimir_fila(*lista);
+                    break;
+                }
+                if(*opUniversal == 3) {
+                    *lista = quickSortListaNome(lista);
+                    imprimir_lista(*lista);
+                    break;
+                }
+                if(*opUniversal == 4) {
+                    *lista = quickSortListaNomeDE(lista);
+                    imprimir_lista(*lista);
+                    break;
+                }
+
+                break;
+
+            case 9:
+                if(*opUniversal == 1) {
+                    *lista = mergeSortIdade(*lista);
+                    imprimir_pilha(*lista);
+                    break;
+                }
+                if(*opUniversal == 2) {
+                    *lista = mergeSortIdade(*lista);
+                    imprimir_fila(*lista);
+                    break;
+                }
+                if(*opUniversal == 3) {
+                    *lista = mergeSortIdade(*lista);
+                    imprimir_lista(*lista);
+                    break;
+                }
+                if(*opUniversal == 4) {
+                    *lista = mergeSortIdadeDE(*lista);
+                    imprimir_lista(*lista);
+                    break;
+                }
+
+            case 10:
+                if(*opUniversal == 1) {
+                    *lista = mergeSortNome(*lista);
+                    imprimir_pilha(*lista);
+                    break;
+                }
+                if(*opUniversal == 2) {
+                    *lista = mergeSortNome(*lista);
+                    imprimir_fila(*lista);
+                    break;
+                }
+                if(*opUniversal == 3) {
+                    *lista = mergeSortNome(*lista);
+                    imprimir_lista(*lista);
+                    break;
+                }
+                if(*opUniversal == 4) {
+                    *lista = mergeSortNomeDE(*lista);
+                    imprimir_lista(*lista);
+                    break;
+                }
+
+            default:
+
+                if(opOrdenar == 0) {
+                    printf("\nEncerrando Programa...");
+                   // armazenar_Lista(&lista,&Lista);
+                    break;
+                }
+            wprintf(L"Opção inválida");
+        }
+    }while(opOrdenar != 0);
+}
+
+void listaDE_exe(int *opUniversal) {
 
     No *remover,*buscar, *lista = NULL;
    // ListasEx *Lista = NULL;
     int opLista;
 
     do {
-        printf("===== MENU LISTA DUPLAMENTE ENCADEADA =====\n");
+        printf("\n===== MENU LISTA DUPLAMENTE ENCADEADA =====\n");
         printf("1. Inserir na lista\n");
         printf("2. Inserir na lista (ordenado por idade)\n");
         printf("3. Inserir na lista (ordenado por nome)\n");
         printf("4. Remover da lista\n");
         printf("5. Imprimir lista \n");
         printf("6. Buscar na lista\n");
+        printf("7. Ordenar lista\n");
         printf("0. Sair\n");
         printf("==========================\n");
         wprintf(L"Qual função deseja escolher: ");
@@ -1291,6 +1797,9 @@ void listaDE_exe() {
 
                 break;
 
+            case 7:
+                menuOrdenação(&lista,opUniversal);
+
             default:
 
                 if(opLista == 0) {
@@ -1302,20 +1811,21 @@ void listaDE_exe() {
         }
     }while(opLista != 0);
 }
-void lista_exe() {
+void lista_exe(int *opUniversal) {
 
     No *remover,*buscar, *lista = NULL;
    // ListasEx *Lista = NULL;
     int opLista;
 
     do {
-        printf("===== MENU LISTA =====\n");
+        printf("\n===== MENU LISTA =====\n");
         printf("1. Inserir na lista\n");
         printf("2. Inserir na lista (ordenado por idade)\n");
         printf("3. Inserir na lista (ordenado por nome)\n");
         printf("4. Remover da lista\n");
         printf("5. Imprimir lista \n");
-        printf("6. Buscar na lista\n");
+        printf("6. Buscar na lista (Metodo Comum)\n");
+        printf("7. Ordenar Lista \n");
         printf("0. Sair\n");
         printf("==========================\n");
         wprintf(L"Qual função deseja escolher: ");
@@ -1369,6 +1879,9 @@ void lista_exe() {
                 }
 
                 break;
+            case 7:
+                menuOrdenação(&lista, opUniversal);
+                break;
 
             default:
 
@@ -1381,16 +1894,17 @@ void lista_exe() {
         }
     }while(opLista != 0);
 }
-void fila_exe(){
+void fila_exe(int *opUniversal){
     int opFila;
     No *remover, *fila = NULL;
    // ListasEx *Fila = NULL;
 
     do {
-        printf("===== MENU FILA =====\n");
+        printf("\n===== MENU FILA =====\n");
         printf("1. Enfileirar\n");
         printf("2. Desenfileirar\n");
         printf("3. Imprimir Fila\n");
+        printf("4. Ordenar Fila \n");
         printf("0. Sair\n");
         printf("==========================\n");
         wprintf(L"Qual função deseja escolher: ");
@@ -1423,6 +1937,9 @@ void fila_exe(){
                 imprimir_fila(fila);
                 break;
 
+            case 4:
+                menuOrdenação(&fila, opUniversal);
+                break;
             default:
 
                 if(opFila == 0) {
@@ -1434,16 +1951,17 @@ void fila_exe(){
         }
     }while(opFila != 0);
 }
-void pilha_exe() {
+void pilha_exe(int *opUniversal) {
     int opPilha;
     No *remover, *topo = NULL, *ordenar = NULL;
     // ListasEx *Pilha;
 
     do {
-        printf("===== MENU PILHA =====\n");
+        printf("\n===== MENU PILHA =====\n");
         printf("1. Empilhar\n");
         printf("2. Desempilhar\n");
         printf("3. Imprimir Pilha\n");
+        printf("4. Ordenar Pilha \n");
         printf("0. Sair\n");
         printf("==========================\n");
         wprintf(L"Qual função deseja escolher: ");
@@ -1453,31 +1971,30 @@ void pilha_exe() {
 
             case 1:
                 topo = empilhar_push(topo); //Por empilhar_push() retornar o endereço do novo topo é necessario atribuir seu valor ao ponteiro topo  ( (topo)passa uma copia do ponteiro topo para a função) para adicionar um novo elemento no topo da pilha
-            printf("\nEmpilhando...\n\n");
-            break;
+                printf("\nEmpilhando...\n\n");
+                break;
 
             case 2:
                 remover = desempilhar_pop(&topo);   //Por desempilhar_pop() retornar um endereço é necessario atribuir o seu valor ao ponteiro remover, porém desta vez o parametro é o ENDEREÇO do ponteiro topo, não uma copia do ponteiro, pois remover precisa alterar o valor do ponteiro original
 
-            if(remover) {
-                printf("\nO cadastro: \n");
-                printf("--------------------\n");
-                imprimirPessoa(remover->pessoa);
-                printf("\n--------------------\n");
-                printf("Foi removido da pilha com sucesso!\n\n1");
-                free(remover);
-            }else {
-                printf("pilha vazia");
-            }
-            break;
+                if(remover) {
+                    printf("\nO cadastro: \n");
+                    printf("--------------------\n");
+                    imprimirPessoa(remover->pessoa);
+                    printf("\n--------------------\n");
+                    printf("Foi removido da pilha com sucesso!\n\n1");
+                    free(remover);
+                }else {
+                    printf("pilha vazia");
+                }
+                break;
 
             case 3:
                 imprimir_pilha(topo);
-            break;
+                break;
 
             case 4:
-                ordenar = quickSortPilhaIdade(&topo);
-                imprimir_pilha(topo);
+                menuOrdenação(&topo,opUniversal);
                 break;
 
                 default:
@@ -1494,13 +2011,14 @@ void pilha_exe() {
 
 void menuCarvas() {
 
-    int opCarvas;
+    int opCarvas, *opUniversal = &opCarvas;
    // ListasEx *ListasSeparadas = NULL;
    // No *ListasMescladas = NULL;
 
+
     do{
 
-        printf("======= MENU CARVAS =======\n");
+        printf("\n======= MENU CARVAS =======\n");
         printf("1. Menu Pilha\n");
         printf("2. Menu Fila\n");
         printf("3. Menu Lista\n");
@@ -1515,20 +2033,20 @@ void menuCarvas() {
         switch(opCarvas){
 
             case 1:
-                pilha_exe();
+                pilha_exe(opUniversal);
                 break;
 
 
             case 2:
-                fila_exe();
+                fila_exe(opUniversal);
                 break;
 
             case 3:
-                lista_exe();
+                lista_exe(opUniversal);
                 break;
 
             case 4:
-                listaDE_exe();
+                listaDE_exe(opUniversal);
                 break;
 
          /*   case 5:
