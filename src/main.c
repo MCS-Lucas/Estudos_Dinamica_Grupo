@@ -34,7 +34,7 @@ void imprimirArvoreBinaria_ordem(NoArv *raiz);
 void imprimirArvoreBinaria_preOrdem(NoArv *raiz);
 void imprimirArvoreBinaria_posOrdem(NoArv *raiz);
 NoArv* buscaBinariaRecursiva(NoArv *raiz, int num);
-
+NoLista* buscaSequencial(NoLista *lista, int valor);
 
 int main(){
 

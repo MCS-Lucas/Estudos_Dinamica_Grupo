@@ -361,6 +361,24 @@ inline NoArv* buscaBinariaRecursiva(NoArv *raiz, int num) {
     return NULL;
 }
 
+inline NoLista* buscaSequencial(NoLista *lista, int valor) {
+    NoLista *aux = NULL;
+    if(lista) {
+        aux = lista;
+    }
+    else {
+        wprintf(L"\n\tValor não encontrado.");
+    }
+    while(aux->proximo) {
+        if(aux->valor == valor)
+            return aux;
+
+        aux = aux->proximo;
+    }
+    wprintf(L"\n\tValor não encontrado.");
+    return NULL;
+}
+
 
 // Menu de operações:
 
@@ -368,6 +386,7 @@ inline void menuFuncoes() {
     int opc;
     int *vetor;
     NoArv *raiz = NULL;
+    NoLista *lista = NULL;
     int input;
 
     do {
@@ -384,12 +403,11 @@ inline void menuFuncoes() {
         wprintf(L"\n\tÁrvore-de-busca-binária ------- 6");
         wprintf(L"\n\tBusca-sequencial -------------- 7");
         wprintf(L"\n\tBusca-binária-recursiva ------- 8");
-        wprintf(L"\n\tBusca-sequencial -------------- 9");
         wprintf(L"\n\n\tMétodos de alocação dinâmica:");
-        wprintf(L"\n\tPilha ------------------------ 10");
-        wprintf(L"\n\tFila ------------------------- 11");
-        wprintf(L"\n\tLista-encadeada -------------- 12");
-        wprintf(L"\n\tLista-duplamente-encadeada --- 13");
+        wprintf(L"\n\tPilha ------------------------ 9");
+        wprintf(L"\n\tFila ------------------------- 10");
+        wprintf(L"\n\tLista-encadeada -------------- 11");
+        wprintf(L"\n\tLista-duplamente-encadeada --- 12");
         wprintf(L"\n\n\tSair -------------------------- 0");
         wprintf(L"\n\n\tEscolha:");
         scanf("\n\t%d", &opc);
@@ -444,7 +462,19 @@ inline void menuFuncoes() {
                 free(vetor);
             break;
             case 7:
-                printf("quickSort()");
+                pausarExecucao(1/2);
+                NoLista *elemento = NULL;
+                vetor = preencherArray();
+                printf("\n\tValores da lista encadeada:\n\t");
+                for(int i = 0; i < TAM; i++)
+                    inserirFimLista(&lista, vetor[i]);
+                imprimirLista(&lista);
+                printf("\n\tProcure um valor:");
+                scanf("%d", &input);
+                elemento = buscaSequencial(lista, input);
+                wprintf(L"\n\tElemento seguinte: %d", elemento->proximo->valor);
+                free(lista);
+                free(vetor);
             break;
             case 8:
                 pausarExecucao(1/2);
@@ -462,13 +492,10 @@ inline void menuFuncoes() {
                 wprintf(L"Nó direito:");
                 if(escolhido->direita == NULL) {printf("\n\tInexistente.");}
                 else{printf("\n\t%d ", escolhido->direita->valor);}
-
+                free(raiz);
                 free(vetor);
             break;
-            case 9:
-                printf("quickSort()");
-            break;
-            case 10: // Pilha
+            case 9: // Pilha
                 pausarExecucao(1/2);
                 NoPilha *topo = NULL;
                 vetor = preencherArray();
@@ -478,19 +505,20 @@ inline void menuFuncoes() {
                     printf("%d ", topo->valor);
                 }
                 free(topo);
+                free(vetor);
             break;
-            case 11: // Fila
+            case 10: // Fila
                 pausarExecucao(1/2);
                 NoFila *fila = NULL;
                 vetor = preencherArray();
                 printf("\n\tValores da fila:\n\t");
-                for(int i = 0; i < TAM; i++) {
+                for(int i = 0; i < TAM; i++)
                     inserirFila(&fila, vetor[i]);
-                }
                 imprimirFila(&fila);
                 free(fila);
+                free(vetor);
             break;
-            case 12: // Lista
+            case 11: // Lista
                 pausarExecucao(1/2);
                 NoLista *lista = NULL;
                 vetor = preencherArray();
@@ -499,8 +527,9 @@ inline void menuFuncoes() {
                     inserirFimLista(&lista, vetor[i]);
                 imprimirLista(&lista);
                 free(lista);
+                free(vetor);
             break;
-            case 13:
+            case 12:
                 pausarExecucao(1/2);
                 NoLista *lista_dupla = NULL;
                 vetor = preencherArray();
@@ -509,6 +538,7 @@ inline void menuFuncoes() {
                     inserirInicioListaDupla(&lista_dupla, vetor[i]);
                 imprimirLista(&lista_dupla);
                 free(lista_dupla);
+            free(vetor);
             break;
             default:
                 if(opc == 0) {

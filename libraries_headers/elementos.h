@@ -36,5 +36,12 @@ typedef struct noListaDupla {
     struct noListaDupla *proximo;
     struct noListaDupla *anterior;
 }NoListaDupla;
+
+typedef struct noPessoa {
+    struct noPessoa *proximo;
+    struct noPessoa *Anterior;
+    Pessoa pessoa;
+}NoPessoa;
+
 #endif
 
