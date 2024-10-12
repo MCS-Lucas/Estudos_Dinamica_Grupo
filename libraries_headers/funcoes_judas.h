@@ -245,7 +245,17 @@ inline void imprimirArvoreBinaria_posOrdem(NoArv *raiz) {
 }
 
 // Métodos de busca:
-
+inline NoArv* buscaBinariaRecursiva(NoArv *raiz, int num) {
+    while(raiz) {
+        if (num < raiz->valor)
+            raiz = raiz->esquerda;
+        else if (num > raiz->valor)
+            raiz = raiz->direita;
+        else
+            return raiz;
+    }
+    return NULL;
+}
 
 
 // Menu de operações:
@@ -253,6 +263,8 @@ inline void menuFuncoes() {
     int opc;
     int *vetor;
     NoArv *raiz = NULL;
+    int input;
+
     do {
         pausarExecucao(1);
         printf("\n\n");
@@ -330,7 +342,23 @@ inline void menuFuncoes() {
                 printf("quickSort()");
             break;
             case 8:
-                printf("quickSort()");
+                pausarExecucao(1/2);
+                vetor = preencherArray();
+                for (int i = 0; i < TAM; i++)
+                    raiz = inserirNaArvoreBinaria(raiz, vetor[i]);
+                wprintf(L"\n\tElementos da árvore em  pré-ordem:\n\t");
+                imprimirArvoreBinaria_preOrdem(raiz);
+                wprintf(L"\n\tDigite o elemento à ser buscado: ");
+                scanf("%d", &input);
+                NoArv *escolhido = buscaBinariaRecursiva(raiz, input);
+                wprintf(L"Nó esquerdo:");
+                if(escolhido->esquerda == NULL) {printf("\n\tInexistente.");}
+                else{printf("\n\t%d ", escolhido->esquerda->valor);}
+                wprintf(L"Nó direito:");
+                if(escolhido->direita == NULL) {printf("\n\tInexistente.");}
+                else{printf("\n\t%d ", escolhido->direita->valor);}
+
+                free(vetor);
             break;
             case 9:
                 printf("quickSort()");

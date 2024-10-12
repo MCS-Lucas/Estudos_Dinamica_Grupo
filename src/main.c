@@ -26,13 +26,12 @@ NoArv* inserirNaArvoreBinaria(NoArv *raiz, int num);
 void imprimirArvoreBinaria_ordem(NoArv *raiz);
 void imprimirArvoreBinaria_preOrdem(NoArv *raiz);
 void imprimirArvoreBinaria_posOrdem(NoArv *raiz);
+NoArv* buscaBinariaRecursiva(NoArv *raiz, int num);
 
 
 int main(){
 
     setlocale(LC_ALL, "Portuguese");
-
-    NoArv *raiz =  NULL;
 
     int op;
 
