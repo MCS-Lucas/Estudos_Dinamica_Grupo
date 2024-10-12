@@ -10,10 +10,17 @@ typedef struct{
 
 }Pessoa;
 
+<<<<<<< HEAD
 typedef struct noPilha{
     int valor;
     struct noPilha *proximo;
 }NoPilha;
+=======
+typedef struct no {
+    int valor;
+    struct no *direita, *esquerda;
+}NoArv;
+>>>>>>> arvore-binaria
 
 typedef struct noFila{
     int valor;
