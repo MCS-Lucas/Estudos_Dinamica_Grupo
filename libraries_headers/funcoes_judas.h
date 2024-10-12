@@ -40,6 +40,9 @@ inline void swap(int *vetor, int indexN1, int indexN2) { // Função que troca d
     }
 }
 
+
+
+
 inline int * preencherArray() { // Função que retorna o endereço de um array preenchido
     int i, input;
     int * numeros = calloc(TAM, sizeof(int)); /* 'calloc' aloca memória de acordo com o tamanho passado e
